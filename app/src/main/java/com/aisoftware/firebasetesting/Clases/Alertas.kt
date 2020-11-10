@@ -1,4 +1,7 @@
 package com.aisoftware.firebasetesting.Clases
 
-class Alertas {
+import android.app.AlertDialog
+import android.content.Context
+
+class Alertas (context: Context) : AlertDialog(context) {
 }
