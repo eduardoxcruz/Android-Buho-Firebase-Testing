@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Firebase Testing</string>
+
+    <string name="TienesConexionAInternet">Tienes conexion a Internet.</string>
+    <string name="NoTienesConexionAInternet">No tienes conexion a Internet.</string>
+    <string name="Exito">Exito.</string>
+    <string name="Error">Error.</string>
+    <string name="Aviso">Aviso.</string>
+    <string name="EscanearCodigoQR">Escanear Codigo QR</string>
+    <string name="NumeroDeTelar">Numero de telar:</string>
+    <string name="MarcasEsperadas">Marcas Esperadas:</string>
+    <string name="ModeloDelTelar">Modelo del telar:</string>
+    <string name="RPMDelTelar">RPM del Telar:</string>
+    <string name="MarcasDelTurno">Marcas del turno:</string>
+    <string name="EscribeLasMarcas">Escribe las marcas</string>
+    <string name="HacerRegitro">Hacer registro</string>
+    <string name="IniciarSesion">Iniciar Sesion</string>
+    <string name="NumeroDeTrabajador">Numero de trabajador</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="GuardarDatosDeLogin">Guardar datos de Login</string>
+    <string name="HayCamposVaciosVerificalosYVuelveAIntentarlo">Hay campos vacios. Verificalos y vuelve a intentarlo</string>
+    <string name="LaContraseñaNoCoincideConElTrabajador">La contraseña no coincide con el trabajador</string>
+    <string name="ElTrabajadorNoEstaRegistradoEnLaBD">El trabajador no esta registrado en la BD.</string>
+    <string name="OcurrioUnErrorAlEscanearElCodigoQR">Ocurrio un error al escanear el codigo QR. Vuelva a intentarlo.</string>
+    <string name="ElCodigoQRNoPuedeEstarVacio">El codigo QR no puede estar vacio. Vuelva a intentarlo.</string>
+    <string name="LaMaquinaNoEstaRegistradaEnLaBD">La maquina no esta registrada en la BD.</string>
+    <string name="QueTipoDeRegistroQuieresHacer">¿Que tipo de registro quieres hacer?</string>
+    <string name="IniciandoSesion...">Iniciando Sesion...</string>
+    <string name="ErrorAlObtenerLosHorariosDeLosTurnos">Error al obtener los horarios de los turnos. Verifiquelos e intentelo de nuevo.</string>
+    <string name="NoSePudoObtenerElTurnoActual">No se pudo obtener el turno actual. Verifique los horarios de los turnos e intentelo de nuevo.</string>
+    <string name="SeccionDelTelar">Seccion del Telar:</string>
+    <string name="SeHizoElRegistroCorrectamente">Se hizo el registro correctamente.</string>
+    <string name="HuboUnErrorAlHacerElRegistro">Hubo un error al hacer el registro. Vuelva a intentarlo.</string>
+    <string name="SeleccioneLaFalla">Seleccione la falla:</string>
+    <string name="DescripcionExtra">Descripcion Extra:</string>
+    <string name="HorasPerdidas">Horas perdidas:</string>
+    <string name="ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono">Para que la aplicacion funcione correctamente se debe permitir ciertos accesos al telefono. Por favor, acepte la solicitud de los permisos para poder continuar.</string>
+    <string name="FaltanPermisosPorConceder">Faltan permisos por conceder. Por favor, conceda los permisos solicitados para podere continuar.</string>
+
 </resources>
