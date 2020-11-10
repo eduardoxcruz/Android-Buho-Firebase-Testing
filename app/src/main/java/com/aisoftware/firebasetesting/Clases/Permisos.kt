@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting
+package com.aisoftware.firebasetesting.Clases
 
 import android.Manifest
 import android.app.Activity
