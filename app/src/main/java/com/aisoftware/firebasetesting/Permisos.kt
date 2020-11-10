@@ -23,4 +23,15 @@ class Permisos {
 
         return todosLosPermisosConcedidos
     }
+
+    fun SolicitarPermisosRequeridos(activity: Activity){
+
+        requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA),
+            REQUEST_CODE)
+
+    }
 }
