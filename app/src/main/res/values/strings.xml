@@ -36,5 +36,7 @@
     <string name="HorasPerdidas">Horas perdidas:</string>
     <string name="ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono">Para que la aplicacion funcione correctamente se debe permitir ciertos accesos al telefono. Por favor, acepte la solicitud de los permisos para poder continuar.</string>
     <string name="FaltanPermisosPorConceder">Faltan permisos por conceder. Por favor, conceda los permisos solicitados para podere continuar.</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Cancelar">Cancelar</string>
 
 </resources>
