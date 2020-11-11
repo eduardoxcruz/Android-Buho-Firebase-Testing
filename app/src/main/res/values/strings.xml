@@ -40,4 +40,5 @@
     <string name="Cancelar">Cancelar</string>
     <string name="HayUnaActualizacionDisponible">Hay una actualizacion disponible</string>
     <string name="Actualizar">Actualizar</string>
+    <string name="HuboUnErrorAlConectarConElServidorDeActualizaciones">Hubo un error al conectar con el servidor de actualizaciones. Pongase en contacto con el personal de Algoritmos Inteligentes lo mas pronto posible.</string>
 </resources>
