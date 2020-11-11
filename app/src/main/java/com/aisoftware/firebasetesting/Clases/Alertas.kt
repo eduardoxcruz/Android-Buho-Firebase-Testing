@@ -21,4 +21,18 @@ class Alertas {
 
     }
 
+    fun GenerarAlertaDeExito(contexto: Context, mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
+
+        AlertDialog.Builder(contexto).
+        setIcon(R.drawable.success).
+        setTitle(R.string.Exito).
+        setMessage(mensajeDelDialogo).
+        setCancelable(false).
+        setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
+        setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
+        create().
+        show()
+
+    }
+
 }
