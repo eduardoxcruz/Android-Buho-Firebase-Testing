@@ -53,4 +53,23 @@ public class Actualizaciones {
                     }
                 });
     }
+
+    private void MostrarMensajeDeActualizacionDisponible(){
+
+        actualizador.setDisplay(Display.DIALOG).
+                setTitleOnUpdateAvailable(R.string.HayUnaActualizacionDisponible).
+                setIcon(R.drawable.success).
+                setButtonUpdate(R.string.Actualizar).
+                setCancelable(false).
+                setButtonDismiss(null).
+                setButtonDoNotShowAgain(null).
+                setUpdateFrom(UpdateFrom.XML).
+                setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml").
+                setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+    }
 }
