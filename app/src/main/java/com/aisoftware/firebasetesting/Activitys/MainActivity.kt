@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.aisoftware.firebasetesting.Clases.Actualizaciones
+import com.aisoftware.firebasetesting.Actualizaciones
 import com.aisoftware.firebasetesting.Clases.Alertas
 import com.aisoftware.firebasetesting.Clases.Permisos
 import com.aisoftware.firebasetesting.R
