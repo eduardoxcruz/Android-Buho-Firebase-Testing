@@ -2,14 +2,11 @@ package com.aisoftware.firebasetesting
 
 import android.content.Context
 import android.content.DialogInterface
-import android.widget.Toast
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.AppUpdaterUtils.UpdateListener
-import com.github.javiersantos.appupdater.enums.AppUpdaterError
 import com.github.javiersantos.appupdater.enums.Display
 import com.github.javiersantos.appupdater.enums.UpdateFrom
-import com.github.javiersantos.appupdater.objects.Update
 
 class Actualizaciones {
 
@@ -23,7 +20,7 @@ class Actualizaciones {
 
     }
 
-    fun MostrarMensajeDeActualizacionDisponible(contexto: Context?) {
+    fun MostrarMensajeDeActualizacionDisponible(contexto: Context?, accionesDelBotonActualizar : DialogInterface.OnClickListener, accionesDelBotonCancelar : DialogInterface.OnClickListener) {
 
         val actualizador = AppUpdater(contexto)
             .setDisplay(Display.DIALOG)
@@ -35,9 +32,8 @@ class Actualizaciones {
             .setButtonDoNotShowAgain("") //pero en Kotlin no se puede, esto para evitar NullPointerExceptions
             .setUpdateFrom(UpdateFrom.XML)
             .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
-            .setButtonUpdateClickListener { dialogInterface, i ->
-
-            }
+            .setButtonUpdateClickListener(accionesDelBotonActualizar)
+            .setButtonDismissClickListener(accionesDelBotonCancelar)
             .start()
 
     }
