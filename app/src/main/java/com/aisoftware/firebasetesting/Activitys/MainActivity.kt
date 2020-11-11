@@ -2,7 +2,6 @@ package com.aisoftware.firebasetesting.Activitys
 
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aisoftware.firebasetesting.Actualizaciones
 import com.aisoftware.firebasetesting.Clases.Alertas
