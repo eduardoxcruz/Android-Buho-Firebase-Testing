@@ -1,7 +1,8 @@
-package com.aisoftware.firebasetesting
+package com.aisoftware.firebasetesting.Clases
 
 import android.content.Context
 import android.content.DialogInterface
+import com.aisoftware.firebasetesting.R
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.AppUpdaterUtils.UpdateListener
