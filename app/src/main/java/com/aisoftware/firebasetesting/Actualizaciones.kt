@@ -2,6 +2,7 @@ package com.aisoftware.firebasetesting
 
 import android.content.Context
 import android.content.DialogInterface
+import android.widget.Toast
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.AppUpdaterUtils.UpdateListener
@@ -30,11 +31,13 @@ class Actualizaciones {
             .setIcon(R.drawable.success)
             .setButtonUpdate(R.string.Actualizar)
             .setCancelable(false)
-            //.setButtonDismiss(null)
-            //.setButtonDoNotShowAgain(null)
+            .setButtonDismiss("") //En java para poder desactivar estos botones se tiene que usar "null" (sin comillas)
+            .setButtonDoNotShowAgain("") //pero en Kotlin no se puede, esto para evitar NullPointerExceptions
             .setUpdateFrom(UpdateFrom.XML)
             .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
-            .setButtonUpdateClickListener(DialogInterface.OnClickListener { dialogInterface, i -> })
+            .setButtonUpdateClickListener { dialogInterface, i ->
+
+            }
             .start()
 
     }
