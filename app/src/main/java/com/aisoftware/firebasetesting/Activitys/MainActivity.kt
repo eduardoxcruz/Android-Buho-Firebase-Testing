@@ -1,6 +1,5 @@
 package com.aisoftware.firebasetesting.Activitys
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity))
 
         else
-
+        {
             alerta.GenerarAlertaDeAviso(
                 this@MainActivity,
                 R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono,
-                DialogInterface.OnClickListener(){ dialog, wich ->
+                { dialog, wich ->
 
                     permisosDeLaApp.SolicitarPermisosRequeridos(this@MainActivity)
 
@@ -33,9 +32,10 @@ class MainActivity : AppCompatActivity() {
                     }, 5000)
 
                 },
-                DialogInterface.OnClickListener(){ dialog, wich ->
+                { dialog, wich ->
                     finish()
                 }
             )
+        }
     }
 }
