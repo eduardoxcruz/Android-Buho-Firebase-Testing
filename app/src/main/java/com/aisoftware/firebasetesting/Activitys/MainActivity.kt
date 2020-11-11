@@ -24,36 +24,46 @@ class MainActivity : AppCompatActivity() {
 
         if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity))
         {
-            actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(this@MainActivity, object :
-                AppUpdaterUtils.UpdateListener {
-                override fun onSuccess(update: Update, isUpdateAvailable: Boolean) {
-
-                    if (isUpdateAvailable)
-                    {
-                        actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(this@MainActivity)
-                    }
-
-                    else
-                    {
-
-                    }
-                }
-
-                override fun onFailed(error: AppUpdaterError)
+            actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
+                this@MainActivity,
+                object : AppUpdaterUtils.UpdateListener
                 {
-
-                    alerta.GenerarAlertaDeError(
-                        this@MainActivity,
-                        R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones,
-                        { dialog, wich ->
-                            dialog.dismiss()
-                        },
-                        { dialog, wich ->
-                            dialog.dismiss()
+                    override fun onSuccess(update: Update, isUpdateAvailable: Boolean)
+                    {
+                        if (isUpdateAvailable)
+                        {
+                            actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
+                                this@MainActivity,
+                                { dialogInterface, i ->
+                                    Toast.makeText(this@MainActivity, "Descargando actualizacion", Toast.LENGTH_SHORT).show()
+                                },
+                                { dialogInterface, i ->
+                                    finish()
+                                }
+                            )
                         }
-                    )
+
+                        else
+                        {
+
+                        }
+                    }
+
+                    override fun onFailed(error: AppUpdaterError)
+                    {
+                        alerta.GenerarAlertaDeError(
+                            this@MainActivity,
+                            R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones,
+                            { dialog, wich ->
+                                dialog.dismiss()
+                            },
+                            { dialog, wich ->
+                            dialog.dismiss()
+                            }
+                        )
+                    }
                 }
-            })
+            )
         }
 
         else
