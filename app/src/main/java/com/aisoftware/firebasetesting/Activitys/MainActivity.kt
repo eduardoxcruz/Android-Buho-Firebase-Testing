@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                             actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
                                 this@MainActivity,
                                 { dialogInterface, i ->
-                                    Toast.makeText(this@MainActivity, "Descargando actualizacion", Toast.LENGTH_SHORT).show()
+                                    actualizadorDeLaApp.DescargarActualizacion(this@MainActivity)
                                 },
                                 { dialogInterface, i ->
                                     finish()

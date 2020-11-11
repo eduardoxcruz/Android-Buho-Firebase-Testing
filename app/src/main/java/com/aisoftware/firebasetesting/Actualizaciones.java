@@ -1,9 +1,16 @@
 package com.aisoftware.firebasetesting;
 
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Environment;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
@@ -18,6 +25,7 @@ public class Actualizaciones {
     private String rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
     private Uri UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
     private File archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
+    private String urlDeLaActualizacion = "https://github.com/eduardoxcruz/Publish/releases/download/1.0.0.1/app-debug.apk"; //"https://github.com/eduardoxcruz/Publish/releases/latest/download/buhoUpdate.apk";
 
     public void ConsultarActualizacionesNuevasEnElServidor(Context contexto, AppUpdaterUtils.UpdateListener accionDelListener){
 
@@ -44,6 +52,43 @@ public class Actualizaciones {
                 .setButtonUpdateClickListener(accionesDelBotonActualizar)
                 .setButtonDismissClickListener(accionesDelBotonCancelar)
                 .start();
+
+    }
+
+
+    //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
+    public void DescargarActualizacion(final Context contexto){
+
+        //TODO: First I wanted to store my update .apk file on internal storage for my app but apparently android does not allow you to open and install
+        //aplication with existing package from there. So for me, alternative solution is Download directory in external storage. If there is better
+        //solution, please inform us in comment
+
+        if(archivoDeActualizacion.exists()){
+            archivoDeActualizacion.delete();
+        }
+
+        DownloadManager.Request solicitudDeDescarga = new DownloadManager.Request(Uri.parse(urlDeLaActualizacion));
+        solicitudDeDescarga.setTitle("Descargando actualizacion de Buho");
+        solicitudDeDescarga.setDestinationUri(UriDelArchivoDeActualizacion);
+
+        // get download service and enqueue file
+        DownloadManager managerDeDescarga = (DownloadManager) contexto.getSystemService(Context.DOWNLOAD_SERVICE);
+        managerDeDescarga.enqueue(solicitudDeDescarga);
+
+        Toast.makeText(contexto, "Descarga iniciada. Por favor, espere...", Toast.LENGTH_LONG).show();
+
+        //set BroadcastReceiver to install app when .apk is downloaded
+        BroadcastReceiver AlCompletarLaDescarga = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Toast.makeText(contexto, "¡Descarga finalizada!", Toast.LENGTH_LONG).show();
+
+               contexto.unregisterReceiver(this);
+            }
+        };
+
+        contexto.registerReceiver(AlCompletarLaDescarga, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
     }
 }
