@@ -38,5 +38,6 @@
     <string name="FaltanPermisosPorConceder">Faltan permisos por conceder. Por favor, conceda los permisos solicitados para podere continuar.</string>
     <string name="Aceptar">Aceptar</string>
     <string name="Cancelar">Cancelar</string>
-
+    <string name="HayUnaActualizacionDisponible">Hay una actualizacion disponible</string>
+    <string name="Actualizar">Actualizar</string>
 </resources>
