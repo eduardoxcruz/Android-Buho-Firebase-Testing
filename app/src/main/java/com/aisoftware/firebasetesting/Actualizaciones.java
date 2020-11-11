@@ -12,9 +12,8 @@ import com.github.javiersantos.appupdater.objects.Update;
 
 public class Actualizaciones {
 
-    private Context contexto;
-    private AppUpdater actualizador = new AppUpdater(contexto);
-    private AppUpdaterUtils consultadorDeActualizaciones= new AppUpdaterUtils(contexto);
+    private AppUpdater actualizador;
+    private AppUpdaterUtils consultadorDeActualizaciones;
     private boolean hayActualizacionDisponible;
 
     public boolean getHayActualizacionDisponible() {
@@ -25,8 +24,7 @@ public class Actualizaciones {
         this.hayActualizacionDisponible = value;
     }
 
-    public Actualizaciones(Context contexto){
-        this.contexto = contexto;
+    public Actualizaciones(){
         this.hayActualizacionDisponible = true;
     }
 
