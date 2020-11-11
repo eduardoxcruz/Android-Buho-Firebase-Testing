@@ -28,8 +28,8 @@ class Actualizaciones {
             .setIcon(R.drawable.success)
             .setButtonUpdate(R.string.Actualizar)
             .setCancelable(false)
-            .setButtonDismiss("") //En java para poder desactivar estos botones se tiene que usar "null" (sin comillas)
-            .setButtonDoNotShowAgain("") //pero en Kotlin no se puede, esto para evitar NullPointerExceptions
+            .setButtonDismiss(R.string.Cancelar)
+            .setButtonDoNotShowAgain("") //En java para poder desactivar estos botones se tiene que usar "null" (sin comillas) pero en Kotlin no se puede, esto para evitar NullPointerExceptions
             .setUpdateFrom(UpdateFrom.XML)
             .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
             .setButtonUpdateClickListener(accionesDelBotonActualizar)
