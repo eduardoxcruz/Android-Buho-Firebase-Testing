@@ -35,4 +35,17 @@ class Alertas {
 
     }
 
+    fun GenerarAlertaDeAviso(contexto: Context, mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
+
+        AlertDialog.Builder(contexto).
+        setIcon(R.drawable.alert).
+        setTitle(R.string.Aviso).
+        setMessage(mensajeDelDialogo).
+        setCancelable(false).
+        setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
+        setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
+        create().
+        show()
+
+    }
 }
