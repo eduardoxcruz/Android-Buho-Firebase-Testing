@@ -12,6 +12,10 @@ public class Actualizaciones {
     private Context contexto;
     private AppUpdater actualizador = new AppUpdater(contexto);
 
+    public Actualizaciones(Context contexto){
+        this.contexto = contexto;
+    }
+
     private void ConsultarActualizacionesNuevasEnElServidor(){
 
         actualizador.setDisplay(Display.DIALOG).
