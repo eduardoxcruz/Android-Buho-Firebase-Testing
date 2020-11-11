@@ -12,33 +12,19 @@ import com.github.javiersantos.appupdater.objects.Update
 
 class Actualizaciones {
 
-    fun ConsultarActualizacionesNuevasEnElServidor(contexto: Context?) {
+    fun ConsultarActualizacionesNuevasEnElServidor(contexto: Context?, accionesDelListener : UpdateListener) {
 
         val consultadorDeActualizaciones = AppUpdaterUtils(contexto)
             .setUpdateFrom(UpdateFrom.XML)
             .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
-            .withListener(object : UpdateListener {
-                override fun onSuccess(update: Update, isUpdateAvailable: Boolean) {
-
-                    if (isUpdateAvailable)
-                    {
-
-                    }
-
-                    else
-                    {
-
-                    }
-                }
-
-                override fun onFailed(error: AppUpdaterError) {}
-            })
+            .withListener(accionesDelListener)
+            .start()
 
     }
 
     fun MostrarMensajeDeActualizacionDisponible(contexto: Context?) {
 
-        val actualizador: AppUpdater = AppUpdater(contexto)
+        val actualizador = AppUpdater(contexto)
             .setDisplay(Display.DIALOG)
             .setTitleOnUpdateAvailable(R.string.HayUnaActualizacionDisponible)
             .setIcon(R.drawable.success)
@@ -49,6 +35,7 @@ class Actualizaciones {
             .setUpdateFrom(UpdateFrom.XML)
             .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
             .setButtonUpdateClickListener(DialogInterface.OnClickListener { dialogInterface, i -> })
+            .start()
 
     }
 }
