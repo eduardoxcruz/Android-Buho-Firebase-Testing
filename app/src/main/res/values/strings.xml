@@ -41,4 +41,7 @@
     <string name="HayUnaActualizacionDisponible">Hay una actualizacion disponible</string>
     <string name="Actualizar">Actualizar</string>
     <string name="HuboUnErrorAlConectarConElServidorDeActualizaciones">Hubo un error al conectar con el servidor de actualizaciones. Pongase en contacto con el personal de Algoritmos Inteligentes lo mas pronto posible.</string>
+    <string name="DescargaIniciada">Descarga iniciada. Por favor, espere...</string>
+    <string name="DescargaFinalizada">¡Descarga finalizada!</string>
+    <string name="DescargandoActualizacion">Descargando actualizacion de Buho</string>
 </resources>
