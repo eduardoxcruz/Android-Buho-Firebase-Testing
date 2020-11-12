@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                             actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
                                 this@MainActivity,
                                 { dialogInterface, i ->
-                                    actualizadorDeLaApp.DescargarActualizacion(this@MainActivity)
+                                    actualizadorDeLaApp.DescargarActualizacion(this@MainActivity, this@MainActivity)
                                 },
                                 { dialogInterface, i ->
                                     finish()
