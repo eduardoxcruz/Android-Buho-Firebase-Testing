@@ -13,6 +13,8 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
+
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
 import com.github.javiersantos.appupdater.enums.Display;
@@ -58,7 +60,7 @@ public class Actualizaciones {
 
 
     //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
-    public void DescargarActualizacion(final Context contexto, Activity activity){
+    public void DescargarActualizacion(final Context contexto, final Activity activity){
 
         //TODO: First I wanted to store my update .apk file on internal storage for my app but apparently android does not allow you to open and install
         //aplication with existing package from there. So for me, alternative solution is Download directory in external storage. If there is better
@@ -86,6 +88,8 @@ public class Actualizaciones {
                 Toast.makeText(contexto, R.string.DescargaFinalizada, Toast.LENGTH_LONG).show();
 
                contexto.unregisterReceiver(this);
+
+               InstalarActualizacion(contexto, activity);
             }
         };
 
@@ -93,13 +97,33 @@ public class Actualizaciones {
 
     }
 
-    public void InstalarActualizacion(Activity activity){
+    /*
+    //Fuente:
+    //https://stackoverflow.com/questions/4604239/install-application-programmatically-on-android
+    //https://androidwave.com/download-and-install-apk-programmatically/
+    //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/
+     */
+    public void InstalarActualizacion(Context contexto, Activity activity){
 
         if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
 
             Intent instalarApp = new Intent(Intent.ACTION_VIEW);
             instalarApp.setDataAndType(UriDelArchivoDeActualizacion, "application/vnd.android.package-archive");
             activity.startActivity(instalarApp);
+
+        }
+
+        else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+
+            Uri fileUri = Uri.fromFile(archivoDeActualizacion);
+            fileUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", archivoDeActualizacion);
+
+            Intent instalarApp = new Intent(Intent.ACTION_VIEW);
+            instalarApp.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            instalarApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            instalarApp.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
+            instalarApp.setData(fileUri);
+            contexto.startActivity(instalarApp);
 
         }
 
