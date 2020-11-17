@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ConsultaDePermisosYActualizaciones()
+    }
+
+    private fun ConsultaDePermisosYActualizaciones(){
+
         if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity))
         {
             actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                                 dialog.dismiss()
                             },
                             { dialog, wich ->
-                            dialog.dismiss()
+                                dialog.dismiss()
                             }
                         )
                     }
@@ -85,4 +90,5 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
 }
