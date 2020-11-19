@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting;
+package com.aisoftware.firebasetesting.Clases;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
+import com.aisoftware.firebasetesting.BuildConfig;
+import com.aisoftware.firebasetesting.R;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
 import com.github.javiersantos.appupdater.enums.Display;
