@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun ConsultaDePermisosYActualizaciones(){
 
-        if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity))
+        if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity, this@MainActivity))
         {
             actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
                 this@MainActivity,
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono,
                 { dialog, wich ->
 
-                    permisosDeLaApp.SolicitarPermisosRequeridos(this@MainActivity)
+                    permisosDeLaApp.SolicitarPermisosRequeridos(this@MainActivity, this@MainActivity)
 
                     Handler().postDelayed({
                         recreate()

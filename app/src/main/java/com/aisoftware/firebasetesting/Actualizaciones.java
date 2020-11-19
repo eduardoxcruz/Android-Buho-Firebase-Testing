@@ -113,7 +113,7 @@ public class Actualizaciones {
 
         }
 
-        else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+        else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
 
             Uri fileUri = Uri.fromFile(archivoDeActualizacion);
             fileUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", archivoDeActualizacion);
