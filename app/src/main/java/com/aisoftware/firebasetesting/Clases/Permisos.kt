@@ -22,7 +22,7 @@ class Permisos {
            ContextCompat.checkSelfPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE) +
            ContextCompat.checkSelfPermission(contexto, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
                 if (contexto.getPackageManager().canRequestPackageInstalls()){
 
@@ -52,7 +52,7 @@ class Permisos {
                 Manifest.permission.CAMERA),
             REQUEST_CODE)
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
             if (!contexto.getPackageManager().canRequestPackageInstalls()){
 
