@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -105,10 +104,11 @@ public class Actualizaciones {
      */
     public void InstalarActualizacion(Context contexto, Activity activity){
 
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
+        if(Build.VERSION.SDK_INT == Build.VERSION_CODES.M){
 
             Intent instalarApp = new Intent(Intent.ACTION_VIEW);
-            instalarApp.setDataAndType(UriDelArchivoDeActualizacion, "application/vnd.android.package-archive");
+            instalarApp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            instalarApp.setDataAndType(Uri.fromFile(archivoDeActualizacion), "application/vnd.android.package-archive");
             activity.startActivity(instalarApp);
 
         }
