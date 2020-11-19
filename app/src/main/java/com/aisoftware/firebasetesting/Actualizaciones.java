@@ -23,11 +23,21 @@ import java.io.File;
 
 public class Actualizaciones {
 
-    private String nombreDelArchivoDeActualizacion = "buhoUpdate.apk";
-    private String rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
-    private Uri UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
-    private File archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
-    private String urlDeLaActualizacion = "https://github.com/eduardoxcruz/Publish/releases/latest/download/app-debug.apk"; //"https://github.com/eduardoxcruz/Publish/releases/download/1.0.0.1/app-debug.apk";
+    private String nombreDelArchivoDeActualizacion;
+    private String rutaDeDescargaDelArchivoDeActualizacion;
+    private Uri UriDelArchivoDeActualizacion;
+    private File archivoDeActualizacion;
+    private String urlDeLaActualizacion;
+
+    public Actualizaciones(){
+
+        this.nombreDelArchivoDeActualizacion = "buhoUpdate.apk";
+        this.rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
+        this.UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
+        this.archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
+        this.urlDeLaActualizacion = "https://github.com/eduardoxcruz/Publish/releases/latest/download/app-debug.apk";
+
+    }
 
     public void ConsultarActualizacionesNuevasEnElServidor(Context contexto, AppUpdaterUtils.UpdateListener accionDelListener){
 
@@ -89,6 +99,9 @@ public class Actualizaciones {
                contexto.unregisterReceiver(this);
 
                InstalarActualizacion(contexto, activity);
+
+               activity.finish();
+
             }
         };
 
