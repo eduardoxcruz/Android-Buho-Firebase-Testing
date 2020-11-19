@@ -1,7 +1,6 @@
 package com.aisoftware.firebasetesting.Activitys
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.aisoftware.firebasetesting.Actualizaciones
 import com.aisoftware.firebasetesting.Clases.Alertas
@@ -10,6 +9,7 @@ import com.aisoftware.firebasetesting.R
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.enums.AppUpdaterError
 import com.github.javiersantos.appupdater.objects.Update
+import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
@@ -79,16 +79,26 @@ class MainActivity : AppCompatActivity() {
 
                     permisosDeLaApp.SolicitarPermisosRequeridos(this@MainActivity, this@MainActivity)
 
-                    Handler().postDelayed({
-                        recreate()
-                    }, 5000)
-
                 },
                 { dialog, wich ->
                     finish()
                 }
             )
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+
+        when (requestCode) {
+
+            REQUEST_CODE -> {
+
+                recreate()
+
+            }
+
+        }
+
     }
 
 }
