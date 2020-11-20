@@ -1,5 +1,7 @@
 package com.aisoftware.firebasetesting.Clases;
 
+import android.content.Context;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,4 +26,11 @@ public class Turno {
 
     }
 
+    public String _TurnoActual(Context contexto) {
+        return turnoActual;
+    }
+
+    public void _TurnoActual(String value) {
+        this.turnoActual = value;
+    }
 }
