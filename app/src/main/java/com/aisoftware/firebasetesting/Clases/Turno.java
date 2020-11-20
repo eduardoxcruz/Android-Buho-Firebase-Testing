@@ -1,9 +1,17 @@
 package com.aisoftware.firebasetesting.Clases;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 
+import androidx.annotation.NonNull;
+
+import com.aisoftware.firebasetesting.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -26,11 +34,14 @@ public class Turno {
 
     }
 
-    public String _TurnoActual(Context contexto) {
+    public String getTurnoActual(Context contexto, Activity activity) {
+
+        BuscarElTurnoActual(contexto, activity);
+
         return turnoActual;
     }
 
-    public void _TurnoActual(String value) {
+    public void setTurnoActual(String value) {
         this.turnoActual = value;
     }
 }
