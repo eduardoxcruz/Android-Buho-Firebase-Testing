@@ -44,4 +44,141 @@ public class Turno {
     public void setTurnoActual(String value) {
         this.turnoActual = value;
     }
+
+    private void BuscarElTurnoActual(final Context contexto, final Activity activity){
+
+        refDatabase.child("/Turno").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapTurno) {
+
+                if(snapTurno.exists())
+                {
+
+                    final int numeroDeTurnosRegistrados = Integer.parseInt(snapTurno.child("Turnos").getValue().toString());
+                    int turnoQuePuedeDurarDespuesDeLas24hrs = 1;
+                    int duracionDeUnTurno = 24 / numeroDeTurnosRegistrados;
+
+                    while (turnoQuePuedeDurarDespuesDeLas24hrs <= numeroDeTurnosRegistrados){
+
+                        int inicioDelTurno = Integer.parseInt(snapTurno.child("I" + String.valueOf(turnoQuePuedeDurarDespuesDeLas24hrs)).getValue().toString());
+                        int finDelTurno = Integer.parseInt(snapTurno.child("F" + String.valueOf(turnoQuePuedeDurarDespuesDeLas24hrs)).getValue().toString());
+
+                        if ((inicioDelTurno + duracionDeUnTurno) > 24 ){
+
+                            if(horaActual >= inicioDelTurno || horaActual >= 0 && horaActual < finDelTurno) {
+
+                                setTurnoActual(String.valueOf(turnoQuePuedeDurarDespuesDeLas24hrs));
+                                break;
+
+                            }
+
+                            else{
+
+                                int turnoQueNoDuraDespuesDeLas24hrs = 1;
+
+                                while (turnoQueNoDuraDespuesDeLas24hrs <= numeroDeTurnosRegistrados){
+
+                                    int inicioDelTurnoNo24h = Integer.parseInt(snapTurno.child("I" + String.valueOf(turnoQueNoDuraDespuesDeLas24hrs)).getValue().toString());
+                                    int finDelTurnoNo24h = Integer.parseInt(snapTurno.child("F" + String.valueOf(turnoQueNoDuraDespuesDeLas24hrs)).getValue().toString());
+
+                                    if (turnoQueNoDuraDespuesDeLas24hrs == turnoQuePuedeDurarDespuesDeLas24hrs) turnoQueNoDuraDespuesDeLas24hrs++;
+
+                                    else {
+
+                                        if (turnoQueNoDuraDespuesDeLas24hrs + 1 <= numeroDeTurnosRegistrados){
+
+                                            if (horaActual >= inicioDelTurnoNo24h && horaActual < finDelTurnoNo24h) {
+
+                                                setTurnoActual(String.valueOf(turnoQueNoDuraDespuesDeLas24hrs));
+                                                break;
+
+                                            }
+
+                                            else turnoQueNoDuraDespuesDeLas24hrs++;
+
+                                        }
+
+                                        else {
+
+                                            setTurnoActual(String.valueOf(turnoQueNoDuraDespuesDeLas24hrs));
+                                            break;
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                        else {
+
+                            if(horaActual >= inicioDelTurno && horaActual < finDelTurno) {
+
+                                setTurnoActual(String.valueOf(turnoQuePuedeDurarDespuesDeLas24hrs));
+                                break;
+
+                            }
+
+                            else{
+
+                                if (turnoQuePuedeDurarDespuesDeLas24hrs == numeroDeTurnosRegistrados){
+
+                                    alerta.GenerarAlertaDeError(
+                                            contexto,
+                                            R.string.NoSePudoObtenerElTurnoActual,
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    activity.finish();
+                                                }
+                                            },
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    activity.finish();
+                                                }
+                                            });
+
+                                }
+
+                                else turnoQuePuedeDurarDespuesDeLas24hrs++;
+
+                            }
+
+                        }
+                    }
+
+                }
+
+                else {
+                    alerta.GenerarAlertaDeError(
+                            contexto,
+                            R.string.ErrorAlObtenerLosHorariosDeLosTurnos,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    activity.finish();
+                                }
+                            },
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    activity.finish();
+                                }
+                            }
+                    );
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+
+        });
+
+    }
+
 }
