@@ -75,7 +75,6 @@ public class Actualizaciones {
 
     }
 
-
     //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
     public void DescargarActualizacion(){
 
@@ -147,6 +146,13 @@ public class Actualizaciones {
             contexto.startActivity(instalarApp);
 
         }
+
+    }
+
+    public void DetenerBusquedaDeActualizaciones(){
+
+        appUpdater.stop();
+        updaterUtils.stop();
 
     }
 }
