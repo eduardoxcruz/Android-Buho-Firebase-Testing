@@ -5,8 +5,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseRealtimeDatabase {
 
-    private FirebaseDatabase database;
-    private DatabaseReference DatabaseReference;
+    private final FirebaseDatabase database;
+    private final DatabaseReference DatabaseReference;
 
     public FirebaseRealtimeDatabase(){
 
