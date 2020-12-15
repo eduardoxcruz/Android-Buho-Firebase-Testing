@@ -57,12 +57,17 @@ public class FirebaseRealtimeDatabase {
                     setDato("Error");
                 }
 
+
+                DatabaseReference.removeEventListener(this);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
+
                 setDato("Error");
+                DatabaseReference.removeEventListener(this);
             }
 
         });
