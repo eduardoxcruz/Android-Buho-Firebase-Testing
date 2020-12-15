@@ -30,31 +30,37 @@ public class Actualizaciones {
     private Uri UriDelArchivoDeActualizacion;
     private File archivoDeActualizacion;
     private String urlDeLaActualizacion;
+    private AppUpdaterUtils updaterUtils;
+    private AppUpdater appUpdater;
+    private Context contexto;
+    private Activity activity;
 
-    public Actualizaciones(){
+    public Actualizaciones(Context Contexto, Activity Activity){
 
         this.nombreDelArchivoDeActualizacion = "buhoUpdate.apk";
         this.rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
         this.UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
         this.archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
         this.urlDeLaActualizacion = "https://github.com/eduardoxcruz/Publish/releases/latest/download/app-debug.apk";
+        this.contexto = Contexto;
+        this.updaterUtils = new AppUpdaterUtils(contexto);
+        this.appUpdater = new AppUpdater(contexto);
+        this.activity = Activity;
 
     }
 
-    public void ConsultarActualizacionesNuevasEnElServidor(Context contexto, AppUpdaterUtils.UpdateListener accionDelListener){
+    public void ConsultarActualizacionesNuevasEnElServidor(AppUpdaterUtils.UpdateListener accionDelListener){
 
-        new AppUpdaterUtils(contexto)
-                .setUpdateFrom(UpdateFrom.XML)
+        updaterUtils.setUpdateFrom(UpdateFrom.XML)
                 .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
                 .withListener(accionDelListener)
                 .start();
 
     }
 
-    public void MostrarMensajeDeActualizacionDisponible(Context contexto, DialogInterface.OnClickListener accionesDelBotonActualizar, DialogInterface.OnClickListener accionesDelBotonCancelar){
+    public void MostrarMensajeDeActualizacionDisponible(DialogInterface.OnClickListener accionesDelBotonActualizar, DialogInterface.OnClickListener accionesDelBotonCancelar){
 
-        new AppUpdater(contexto)
-                .setDisplay(Display.DIALOG)
+        appUpdater.setDisplay(Display.DIALOG)
                 .setTitleOnUpdateAvailable(R.string.HayUnaActualizacionDisponible)
                 .setIcon(R.drawable.success)
                 .setCancelable(false)
@@ -71,7 +77,7 @@ public class Actualizaciones {
 
 
     //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
-    public void DescargarActualizacion(final Context contexto, final Activity activity){
+    public void DescargarActualizacion(){
 
         //TODO: First I wanted to store my update .apk file on internal storage for my app but apparently android does not allow you to open and install
         //aplication with existing package from there. So for me, alternative solution is Download directory in external storage. If there is better
@@ -100,7 +106,7 @@ public class Actualizaciones {
 
                contexto.unregisterReceiver(this);
 
-               InstalarActualizacion(contexto, activity);
+               InstalarActualizacion();
 
                activity.finish();
 
@@ -117,7 +123,7 @@ public class Actualizaciones {
     //https://androidwave.com/download-and-install-apk-programmatically/
     //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/
      */
-    public void InstalarActualizacion(Context contexto, Activity activity){
+    public void InstalarActualizacion(){
 
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.M){
 
