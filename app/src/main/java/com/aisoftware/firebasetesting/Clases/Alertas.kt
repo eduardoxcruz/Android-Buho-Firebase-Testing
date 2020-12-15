@@ -5,29 +5,16 @@ import android.content.Context
 import android.content.DialogInterface
 import com.aisoftware.firebasetesting.R
 
-class Alertas {
+class Alertas (Contexto : Context){
 
-    fun GenerarAlertaDeError(contexto: Context, mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
+    private val contexto = Contexto
+    private val alertDialog = AlertDialog.Builder(contexto).setCancelable(false)
 
-        AlertDialog.Builder(contexto).
-            setIcon(R.drawable.error).
-            setTitle(R.string.Error).
-            setMessage(mensajeDelDialogo).
-            setCancelable(false).
-            setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
-            setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
-            create().
-            show()
+    fun GenerarAlertaDeError(mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
 
-    }
-
-    fun GenerarAlertaDeExito(contexto: Context, mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
-
-        AlertDialog.Builder(contexto).
-        setIcon(R.drawable.success).
-        setTitle(R.string.Exito).
+        alertDialog.setIcon(R.drawable.error).
+        setTitle(R.string.Error).
         setMessage(mensajeDelDialogo).
-        setCancelable(false).
         setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
         setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
         create().
@@ -35,13 +22,23 @@ class Alertas {
 
     }
 
-    fun GenerarAlertaDeAviso(contexto: Context, mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
+    fun GenerarAlertaDeExito(mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
 
-        AlertDialog.Builder(contexto).
-        setIcon(R.drawable.alert).
+        alertDialog.setIcon(R.drawable.success).
+        setTitle(R.string.Exito).
+        setMessage(mensajeDelDialogo).
+        setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
+        setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
+        create().
+        show()
+
+    }
+
+    fun GenerarAlertaDeAviso(mensajeDelDialogo : Int, accionDelClickPositivo : DialogInterface.OnClickListener, accionDelClickNegativo : DialogInterface.OnClickListener){
+
+        alertDialog.setIcon(R.drawable.alert).
         setTitle(R.string.Aviso).
         setMessage(mensajeDelDialogo).
-        setCancelable(false).
         setPositiveButton(R.string.Aceptar, accionDelClickPositivo).
         setNegativeButton(R.string.Cancelar, accionDelClickNegativo).
         create().
