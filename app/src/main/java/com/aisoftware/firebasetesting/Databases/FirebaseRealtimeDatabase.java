@@ -15,4 +15,7 @@ public class FirebaseRealtimeDatabase {
 
     }
 
+    public String ObtenerDato(String rutaEnFirebase){
+
+    }
 }
