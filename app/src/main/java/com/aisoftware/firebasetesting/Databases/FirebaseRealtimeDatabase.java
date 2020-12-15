@@ -15,7 +15,7 @@ public class FirebaseRealtimeDatabase {
 
     }
 
-    public String ObtenerDato(String rutaEnFirebase){
+    public String ObtenerDatoEnUnSoloEvento(String rutaEnFirebase){
 
     }
 }
