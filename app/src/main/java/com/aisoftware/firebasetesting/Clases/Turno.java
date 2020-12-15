@@ -23,21 +23,20 @@ public class Turno {
     private Calendar calendario;
     private int horaActual;
     private String turnoActual;
+    private Context contexto;
 
-    public Turno(){
+    public Turno(Context Contexto){
 
         this.database = FirebaseDatabase.getInstance();
         this.refDatabase = database.getReference();
-        this.alerta = new Alertas();
+        this.contexto = Contexto;
+        this.alerta = new Alertas(contexto);
         this.calendario = Calendar.getInstance();
         this.horaActual = calendario.get(Calendar.HOUR_OF_DAY);
 
     }
 
-    public String getTurnoActual(Context contexto, Activity activity) {
-
-        BuscarElTurnoActual(contexto, activity);
-
+    public String getTurnoActual() {
         return turnoActual;
     }
 
@@ -45,7 +44,7 @@ public class Turno {
         this.turnoActual = value;
     }
 
-    private void BuscarElTurnoActual(final Context contexto, final Activity activity){
+    private void BuscarElTurnoActual(final Activity activity){
 
         refDatabase.child("/Turno").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,7 +126,6 @@ public class Turno {
                                 if (turnoQuePuedeDurarDespuesDeLas24hrs == numeroDeTurnosRegistrados){
 
                                     alerta.GenerarAlertaDeError(
-                                            contexto,
                                             R.string.NoSePudoObtenerElTurnoActual,
                                             new DialogInterface.OnClickListener() {
                                                 @Override
@@ -155,7 +153,6 @@ public class Turno {
 
                 else {
                     alerta.GenerarAlertaDeError(
-                            contexto,
                             R.string.ErrorAlObtenerLosHorariosDeLosTurnos,
                             new DialogInterface.OnClickListener() {
                                 @Override
