@@ -12,15 +12,15 @@ public class FirebaseRealtimeDatabase {
 
     private final FirebaseDatabase database;
     private final DatabaseReference DatabaseReference;
-    private String DatoQueSeVaADevolver;
+    private String Dato;
 
     //Getters y Setters
-    public String getDatoQueSeVaADevolver() {
-        return DatoQueSeVaADevolver;
+    public String getDato() {
+        return Dato;
     }
 
-    public void setDatoQueSeVaADevolver(String datoQueSeVaADevolver) {
-        DatoQueSeVaADevolver = datoQueSeVaADevolver;
+    public void setDato(String dato) {
+        Dato = dato;
     }
 
     ////////////////////////////////////////////////
@@ -31,7 +31,8 @@ public class FirebaseRealtimeDatabase {
 
         this.database = FirebaseDatabase.getInstance();
         this.DatabaseReference = database.getReference();
-        this.setDatoQueSeVaADevolver(null);
+        this.setDato(null);
+
     }
 
     ////////////////////////////////////////////////
@@ -48,12 +49,12 @@ public class FirebaseRealtimeDatabase {
 
                 if (snapshot.exists())
                 {
-                    setDatoQueSeVaADevolver(snapshot.getValue().toString());
+                    setDato(snapshot.getValue().toString());
                 }
 
                 else
                 {
-                    setDatoQueSeVaADevolver("Error");
+                    setDato("Error");
                 }
 
             }
@@ -61,12 +62,12 @@ public class FirebaseRealtimeDatabase {
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
-                setDatoQueSeVaADevolver("Error");
+                setDato("Error");
             }
 
         });
 
-        return getDatoQueSeVaADevolver();
+        return getDato();
     }
 
     ////////////////////////////////////////////////
