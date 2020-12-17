@@ -44,4 +44,6 @@
     <string name="DescargaIniciada">Descarga iniciada. Por favor, espere...</string>
     <string name="DescargaFinalizada">¡Descarga finalizada!</string>
     <string name="DescargandoActualizacion">Descargando actualizacion de Buho</string>
+    <string name="ChannelName_ParosYReanudaciones">Paros y Reanudaciones</string>
+    <string name="ChannelDescription_ParosYReanudaciones">Paros y reanudaciones de las maquinas productoras.</string>
 </resources>
