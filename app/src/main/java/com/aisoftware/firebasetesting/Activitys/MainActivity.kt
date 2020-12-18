@@ -2,9 +2,7 @@ package com.aisoftware.firebasetesting.Activitys
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aisoftware.firebasetesting.Clases.Actualizaciones
-import com.aisoftware.firebasetesting.Clases.Alertas
-import com.aisoftware.firebasetesting.Clases.Permisos
+import com.aisoftware.firebasetesting.Clases.*
 import com.aisoftware.firebasetesting.R
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.enums.AppUpdaterError
@@ -14,14 +12,16 @@ import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 class MainActivity : AppCompatActivity() {
 
     private val permisosDeLaApp = Permisos()
-    private val alerta = Alertas()
-    private val actualizadorDeLaApp = Actualizaciones()
+    private lateinit var alerta : Alertas
+    private lateinit var actualizadorDeLaApp : Actualizaciones
+    private lateinit var canalesDeNotificaciones: Notificaciones
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         ConsultaDePermisosYActualizaciones()
+
     }
 
     private fun ConsultaDePermisosYActualizaciones(){
@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity, this@MainActivity))
         {
             actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
-                this@MainActivity,
                 object : AppUpdaterUtils.UpdateListener
                 {
                     override fun onSuccess(update: Update, isUpdateAvailable: Boolean)
@@ -37,9 +36,8 @@ class MainActivity : AppCompatActivity() {
                         if (isUpdateAvailable)
                         {
                             actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
-                                this@MainActivity,
                                 { dialogInterface, i ->
-                                    actualizadorDeLaApp.DescargarActualizacion(this@MainActivity, this@MainActivity)
+                                    actualizadorDeLaApp.DescargarActualizacion()
                                 },
                                 { dialogInterface, i ->
                                     finish()
@@ -56,7 +54,6 @@ class MainActivity : AppCompatActivity() {
                     override fun onFailed(error: AppUpdaterError)
                     {
                         alerta.GenerarAlertaDeError(
-                            this@MainActivity,
                             R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones,
                             { dialog, wich ->
                                 dialog.dismiss()
@@ -73,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         else
         {
             alerta.GenerarAlertaDeAviso(
-                this@MainActivity,
                 R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono,
                 { dialog, wich ->
 
