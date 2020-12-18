@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
                         else
                         {
-
+                            actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
                         }
                     }
 
