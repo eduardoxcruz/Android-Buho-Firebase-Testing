@@ -6,15 +6,20 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import com.aisoftware.firebasetesting.R;
 
 public class Notificaciones {
 
     private Context contexto;
-    private NotificationCompat.Builder notificationBuilder;
+    private NotificationCompat.Builder constructorDeNotificacion;
+    private NotificationManagerCompat gestorDeNotificacion;
 
     public Notificaciones(Context Contexto){
 
         this.contexto = Contexto;
+        this.gestorDeNotificacion = NotificationManagerCompat.from(contexto);
 
     }
 
@@ -34,6 +39,22 @@ public class Notificaciones {
             managerDeNotificacion.createNotificationChannel(canalDeNotificacion);
 
         }
+
+    }
+
+    //TODO: Cambiar el icono pequeño de las notificaciones en la linea constructorDeNotificaciones.setSmallIcon()
+    public void CrearNoitificacion(int canalDeNotificacion_ID, int notificacionID, int Titulo, CharSequence texto, int prioridad){
+
+        String ID = contexto.getString(canalDeNotificacion_ID);
+        CharSequence titulo = contexto.getString(Titulo);
+
+        constructorDeNotificacion = new NotificationCompat.Builder(contexto, ID);
+        constructorDeNotificacion.setSmallIcon(R.drawable.success)
+                .setContentTitle(titulo)
+                .setContentText(texto)
+                .setPriority(prioridad);
+
+        gestorDeNotificacion.notify(notificacionID, constructorDeNotificacion.build());
 
     }
 
