@@ -1,24 +1,15 @@
 package com.aisoftware.firebasetesting.Clases;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 
-import androidx.annotation.NonNull;
-
-import com.aisoftware.firebasetesting.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
 public class Turno {
 
-    private FirebaseDatabase database;
-    private DatabaseReference refDatabase;
+    private DatabaseReference clienteFirebase;
     private Alertas alerta;
     private Calendar calendario;
     private int horaActual;
@@ -27,16 +18,74 @@ public class Turno {
 
     public Turno(Context Contexto){
 
-        this.database = FirebaseDatabase.getInstance();
-        this.refDatabase = database.getReference();
         this.contexto = Contexto;
         this.alerta = new Alertas(contexto);
+        this.clienteFirebase = FirebaseDatabase.getInstance().getReference();
         this.calendario = Calendar.getInstance();
         this.horaActual = calendario.get(Calendar.HOUR_OF_DAY);
+        this.turnoActual = null;
 
     }
 
     public String getTurnoActual() {
+
+        /*clienteFirebase.child("/Turno/Turnos").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+
+                if(snapshot.exists())
+                {
+
+                    int numeroDeTurnosRegistrados = Integer.parseInt(snapshot.getValue().toString());
+
+                    int[] horaInicio = new int[numeroDeTurnosRegistrados];
+                    int[] horaFin = new int[numeroDeTurnosRegistrados];
+                    int turnoQueDuraDespuesDeLas24hrs = 0;
+                    int duracionDeUnTurno = 24 / numeroDeTurnosRegistrados;
+                    int turno = 1;
+
+                    while(turno <= numeroDeTurnosRegistrados)
+                    {
+
+                        horaInicio[turno] = Integer.parseInt(clienteFirebase.ObtenerDatoEnUnSoloEvento("/Turno/I" + turno));
+                        horaFin[turno] = Integer.parseInt(clienteFirebase.ObtenerDatoEnUnSoloEvento("/Turno/F" + turno));
+
+                        if (horaInicio[turno] + duracionDeUnTurno > 24)
+                        {
+                            turnoQueDuraDespuesDeLas24hrs = turno;
+                        }
+
+                        else
+                        {
+                            if (turno + 1 <= numeroDeTurnosRegistrados)
+                            {
+
+                                if (horaActual >= horaInicio[turno] && horaActual < horaFin[turno]){
+                                    setTurnoActual(String.valueOf(turno));
+                                    break;
+                                }
+
+                            }
+
+                            else
+                            {
+                                setTurnoActual(String.valueOf(turnoQueDuraDespuesDeLas24hrs));
+                                break;
+                            }
+
+                        }
+                        turno += 1;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
         return turnoActual;
     }
 
@@ -44,7 +93,12 @@ public class Turno {
         this.turnoActual = value;
     }
 
-    private void BuscarElTurnoActual(final Activity activity){
+    public void BuscarElTurnoActual(){
+
+
+
+        /*if (clienteFirebase.ObtenerDatoEnUnSoloEvento("/Turno/Turnos") != "Error")
+        {
 
         refDatabase.child("/Turno").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -174,8 +228,7 @@ public class Turno {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
 
-        });
-
+        });*/
     }
 
 }

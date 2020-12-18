@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        InicializarPropiedades()
         ConsultaDePermisosYActualizaciones()
 
     }
@@ -97,4 +98,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun InicializarPropiedades(){
+
+        actualizadorDeLaApp = Actualizaciones(this@MainActivity, this@MainActivity)
+        alerta = Alertas(this@MainActivity)
+        canalesDeNotificaciones = Notificaciones(this@MainActivity)
+    }
 }
