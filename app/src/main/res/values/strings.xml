@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Firebase Testing</string>
 
-    <string name="Exito">Exito.</string>
-    <string name="Error">Error.</string>
-    <string name="Aviso">Aviso.</string>
+    <string name="Exito">Exito</string>
+    <string name="Error">Error</string>
+    <string name="Aviso">Aviso</string>
     <string name="EscanearCodigoQR">Escanear Codigo QR</string>
     <string name="NumeroDeTelar">Numero de telar:</string>
     <string name="MarcasEsperadas">Marcas Esperadas:</string>
@@ -47,4 +47,6 @@
     <string name="CanalDeNotificacion_ID_ParosYReanudaciones">ParosYReanudaciones</string>
     <string name="Notificacion_Titulo_ParoEnUnaMaquina">Paro en una maquina</string>
     <string name="ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet">Para poder usar la aplicacion se requiere una conexion a Internet. Se le recomienda usar una red WIFI pero tambien es posible usar una conexion de datos moviles.</string>
+    <string name="Entendido">Entendido</string>
+    <string name="VolverAIntentarlo">Volver a intentarlo</string>
 </resources>
