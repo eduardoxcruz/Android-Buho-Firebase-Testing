@@ -29,6 +29,51 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        if (Internet(contexto).ExisteConexionAInternet())
+        {
+
+            if(!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(contexto, this@MainActivity)){
+
+                Alertas(contexto)
+                    .GenerarAlertaDeAviso()
+                    .setMessage(R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono)
+                    .setPositiveButton(R.string.Entendido
+                    )
+                    { dialog, wich ->
+                        permisosDeLaApp.SolicitarPermisosRequeridos(contexto, this@MainActivity)
+                    }
+                    .setNegativeButton(R.string.Cancelar)
+                    { dialog, wich ->
+                        finish()
+                    }
+                    .create()
+                    .show()
+
+            }
+
+        }
+
+        else
+        {
+
+            Alertas(contexto)
+                .GenerarAlertaDeError()
+                .setMessage(R.string.ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet)
+                .setPositiveButton(R.string.VolverAIntentarlo
+                )
+                { dialog, wich ->
+                    recreate()
+                }
+                .setNegativeButton(R.string.Cancelar)
+                { dialog, wich ->
+                    finish()
+                }
+                .create()
+                .show()
+
+        }
+
     }
 
     override fun onRestart() {
@@ -37,27 +82,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-    }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    private fun ConsultaDePermisosYActualizaciones(){
-
-        if(permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(this@MainActivity, this@MainActivity))
-        {
-            actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
-                object : AppUpdaterUtils.UpdateListener
-                {
+        actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
+            object : AppUpdaterUtils.UpdateListener
+            {
                     override fun onSuccess(update: Update, isUpdateAvailable: Boolean)
                     {
                         if (isUpdateAvailable)
@@ -80,46 +108,46 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onFailed(error: AppUpdaterError)
                     {
-                        alerta.GenerarAlertaDeError(
-                            R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones,
+
+                        Alertas(contexto)
+                            .GenerarAlertaDeError()
+                            .setMessage(R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones)
+                            .setPositiveButton(R.string.VolverAIntentarlo)
                             { dialog, wich ->
-                                dialog.dismiss()
-                            },
+                                recreate()
+                            }
+                            .setNegativeButton(R.string.Cancelar)
                             { dialog, wich ->
                                 dialog.dismiss()
                             }
-                        )
+                            .create()
+                            .show()
+
                     }
+
                 }
-            )
-        }
+        )
 
-        else
-        {
-            alerta.GenerarAlertaDeAviso(
-                R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono,
-                { dialog, wich ->
+    }
 
-                    permisosDeLaApp.SolicitarPermisosRequeridos(this@MainActivity, this@MainActivity)
+    override fun onPause() {
+        super.onPause()
+    }
 
-                },
-                { dialog, wich ->
-                    finish()
-                }
-            )
-        }
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
 
         when (requestCode) {
-
             REQUEST_CODE -> {
-
                 recreate()
-
             }
-
         }
 
     }
