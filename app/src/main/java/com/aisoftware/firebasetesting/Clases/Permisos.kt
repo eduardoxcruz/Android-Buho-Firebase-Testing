@@ -20,27 +20,29 @@ class Permisos(Contexto : Context, Activity : Activity) {
     fun VerificarQueTodosLosPermisosEstenConcedidos() : Boolean{
 
         var todosLosPermisosConcedidos : Boolean = false
+        var concedido_PermisosDelTelefono : Boolean = false
+        var concedido_PermisoDeInstalacionDePaquetes : Boolean = false
 
         if(ContextCompat.checkSelfPermission(contexto, Manifest.permission.WRITE_EXTERNAL_STORAGE) +
            ContextCompat.checkSelfPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE) +
-           ContextCompat.checkSelfPermission(contexto, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+           ContextCompat.checkSelfPermission(contexto, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+        {
+            concedido_PermisosDelTelefono = true
+        }
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
 
-                if (contexto.getPackageManager().canRequestPackageInstalls()){
-
-                    todosLosPermisosConcedidos = true
-
-                }
-
+            if (contexto.getPackageManager().canRequestPackageInstalls())
+            {
+                concedido_PermisoDeInstalacionDePaquetes = true
             }
 
-            else {
+        }
 
-                todosLosPermisosConcedidos = true
-
-            }
-
+        if(concedido_PermisosDelTelefono && concedido_PermisoDeInstalacionDePaquetes == true)
+        {
+            todosLosPermisosConcedidos = true
         }
 
         return todosLosPermisosConcedidos
