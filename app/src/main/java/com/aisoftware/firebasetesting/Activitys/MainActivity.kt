@@ -1,5 +1,6 @@
 package com.aisoftware.firebasetesting.Activitys
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,18 +13,21 @@ import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
-    private val permisosDeLaApp = Permisos()
+    private lateinit var permisosDeLaApp : Permisos
     private lateinit var actualizadorDeLaApp : Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones
     private lateinit var contexto : Context
+    private lateinit var activity: Activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         contexto = this@MainActivity
-        actualizadorDeLaApp = Actualizaciones(contexto, this@MainActivity)
+        activity = this@MainActivity
+        actualizadorDeLaApp = Actualizaciones(contexto, activity)
         canalesDeNotificaciones = Notificaciones(contexto)
+        permisosDeLaApp = Permisos(contexto, activity)
 
     }
 
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         if (Internet(contexto).ExisteConexionAInternet())
         {
 
-            if(!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos(contexto, this@MainActivity)){
+            if(!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos()){
 
                 Alertas(contexto)
                     .GenerarAlertaDeAviso()
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     .setPositiveButton(R.string.Entendido
                     )
                     { dialog, wich ->
-                        permisosDeLaApp.SolicitarPermisosRequeridos(contexto, this@MainActivity)
+                        permisosDeLaApp.SolicitarPermisosRequeridos()
                     }
                     .setNegativeButton(R.string.Cancelar)
                     { dialog, wich ->
