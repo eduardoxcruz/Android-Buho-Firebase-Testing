@@ -12,9 +12,12 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
-class Permisos {
+class Permisos(Contexto : Context, Activity : Activity) {
 
-    fun VerificarQueTodosLosPermisosEstenConcedidos(contexto: Context, activity : Activity) : Boolean{
+    private val contexto = Contexto
+    private val activity = Activity
+
+    fun VerificarQueTodosLosPermisosEstenConcedidos() : Boolean{
 
         var todosLosPermisosConcedidos : Boolean = false
 
@@ -43,7 +46,7 @@ class Permisos {
         return todosLosPermisosConcedidos
     }
 
-    fun SolicitarPermisosRequeridos(contexto : Context, activity: Activity){
+    fun SolicitarPermisosRequeridos(){
 
         requestPermissions(
             activity,
