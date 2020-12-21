@@ -1,5 +1,6 @@
 package com.aisoftware.firebasetesting.Activitys
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aisoftware.firebasetesting.Clases.*
@@ -12,19 +13,17 @@ import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 class MainActivity : AppCompatActivity() {
 
     private val permisosDeLaApp = Permisos()
-    private lateinit var alerta : Alertas
     private lateinit var actualizadorDeLaApp : Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones
+    private lateinit var contexto : Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        actualizadorDeLaApp = Actualizaciones(this@MainActivity, this@MainActivity)
-        alerta = Alertas(this@MainActivity)
-        canalesDeNotificaciones = Notificaciones(this@MainActivity)
-
-        ConsultaDePermisosYActualizaciones()
+        contexto = this@MainActivity
+        actualizadorDeLaApp = Actualizaciones(contexto, this@MainActivity)
+        canalesDeNotificaciones = Notificaciones(contexto)
 
     }
 
