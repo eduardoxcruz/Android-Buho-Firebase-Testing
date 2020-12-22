@@ -19,6 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".ServiciosYProcesosEnSegundoPlano.ReiniciadorDeServicios"
+            android:enabled="true"
+            android:exported="false"></receiver>
 
         <service
             android:name=".ServiciosYProcesosEnSegundoPlano.ParosYReanudaciones"
