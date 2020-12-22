@@ -13,18 +13,16 @@ import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
+    private val contexto : Context = this@MainActivity
+    private val activity : Activity = this@MainActivity
     private lateinit var permisosDeLaApp : Permisos
     private lateinit var actualizadorDeLaApp : Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones
-    private lateinit var contexto : Context
-    private lateinit var activity: Activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contexto = this@MainActivity
-        activity = this@MainActivity
         actualizadorDeLaApp = Actualizaciones(contexto, activity)
         canalesDeNotificaciones = Notificaciones(contexto)
         permisosDeLaApp = Permisos(contexto, activity)

@@ -78,10 +78,6 @@ public class Actualizaciones {
     //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
     public void DescargarActualizacion(){
 
-        //TODO: First I wanted to store my update .apk file on internal storage for my app but apparently android does not allow you to open and install
-        //aplication with existing package from there. So for me, alternative solution is Download directory in external storage. If there is better
-        //solution, please inform us in comment
-
         if(archivoDeActualizacion.exists()){
             archivoDeActualizacion.delete();
         }
