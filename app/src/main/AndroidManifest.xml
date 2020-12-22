@@ -22,13 +22,19 @@
         <receiver
             android:name=".ServiciosYProcesosEnSegundoPlano.ReiniciadorDeServicios"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="ReiniciarServicio"/>
+            </intent-filter>
+
+        </receiver>
 
         <service
             android:name=".ServiciosYProcesosEnSegundoPlano.ParosYReanudaciones"
             android:description="@string/ElServicioEstaALaEscuchaDeNuevosParosYReanudaciones"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
