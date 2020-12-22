@@ -49,4 +49,5 @@
     <string name="ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet">Para poder usar la aplicacion se requiere una conexion a Internet. Se le recomienda usar una red WIFI pero tambien es posible usar una conexion de datos moviles.</string>
     <string name="Entendido">Entendido</string>
     <string name="VolverAIntentarlo">Volver a intentarlo</string>
+    <string name="ElServicioEstaALaEscuchaDeNuevosParosYReanudaciones">El servicio esta buscando nuevos paros y reanudaciones en la Base de Datos</string>
 </resources>
