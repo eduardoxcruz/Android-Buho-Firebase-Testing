@@ -21,11 +21,10 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".Servicios.ParosYReanudaciones"
+            android:name=".ServiciosYProcesosEnSegundoPlano.ParosYReanudaciones"
+            android:description="@string/ElServicioEstaALaEscuchaDeNuevosParosYReanudaciones"
             android:enabled="true"
-            android:exported="false"
-            android:description="@string/ElServicioEstaALaEscuchaDeNuevosParosYReanudaciones">
-        </service>
+            android:exported="false"></service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
