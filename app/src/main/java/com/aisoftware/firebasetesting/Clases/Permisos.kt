@@ -33,12 +33,12 @@ class Permisos(Contexto : Context, Activity : Activity) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
 
-            if (contexto.getPackageManager().canRequestPackageInstalls())
-            {
-                concedido_PermisoDeInstalacionDePaquetes = true
-            }
+            if (contexto.getPackageManager().canRequestPackageInstalls()) concedido_PermisoDeInstalacionDePaquetes = true
 
         }
+
+        else concedido_PermisoDeInstalacionDePaquetes = true
+
 
         if(concedido_PermisosDelTelefono && concedido_PermisoDeInstalacionDePaquetes == true)
         {
