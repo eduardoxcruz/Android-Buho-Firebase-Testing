@@ -6,8 +6,6 @@ import android.os.IBinder;
 
 public class ParosYReanudaciones extends Service {
 
-    public ParosYReanudaciones() { }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -15,7 +13,8 @@ public class ParosYReanudaciones extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return 0;
+        super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
