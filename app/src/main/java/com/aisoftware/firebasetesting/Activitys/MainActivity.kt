@@ -1,8 +1,10 @@
 package com.aisoftware.firebasetesting.Activitys
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.aisoftware.firebasetesting.Clases.*
@@ -160,6 +162,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    //Fuente: https://stackoverflow.com/questions/30525784/android-keep-service-running-when-app-is-killed
+    private fun MiServicioEstaCorriendo(servicio: Class<*>) : Boolean {
+
+        var miServicioEstaCorriendo : Boolean = false
+
+        val activityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+        for (serviciosCorriendo in activityManager.getRunningServices(Int.MAX_VALUE)) {
+
+            if (servicio.name == serviciosCorriendo.service.className) {
+                Toast.makeText(contexto, "Servicio Corriendo", Toast.LENGTH_SHORT).show()
+                miServicioEstaCorriendo = true
+            }
+
+        }
+
+        return miServicioEstaCorriendo
     }
 
 }
