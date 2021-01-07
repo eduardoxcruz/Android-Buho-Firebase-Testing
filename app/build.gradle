@@ -40,6 +40,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.pusher:push-notifications-android:1.6.2'
+    implementation 'com.google.firebase:firebase-core:17.4.4'
 
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0'
     implementation 'com.google.zxing:core:3.3.0'
