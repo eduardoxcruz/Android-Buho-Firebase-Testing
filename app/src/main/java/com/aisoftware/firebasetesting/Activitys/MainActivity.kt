@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aisoftware.firebasetesting.Clases.*
 import com.aisoftware.firebasetesting.R
+import com.aisoftware.firebasetesting.Servicios.FCM_PushNotifications
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.enums.AppUpdaterError
 import com.github.javiersantos.appupdater.objects.Update
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var permisosDeLaApp : Permisos
     private lateinit var actualizadorDeLaApp : Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones
+    private lateinit var notificacionesFCM : FCM_PushNotifications
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         actualizadorDeLaApp = Actualizaciones(contexto, activity)
         canalesDeNotificaciones = Notificaciones(contexto)
         permisosDeLaApp = Permisos(contexto, activity)
+        notificacionesFCM = FCM_PushNotifications(contexto)
+
+        notificacionesFCM.SuscribirATema("AvisosDelServidor")
 
     }
 
