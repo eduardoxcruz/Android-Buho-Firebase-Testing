@@ -45,6 +45,7 @@
     <string name="CanalDeNotificacion_Nombre_ParosYReanudaciones">Paros y Reanudaciones</string>
     <string name="CanalDeNotificacion_Descripcion_ParosYReanudaciones">Paros y reanudaciones de las maquinas productoras.</string>
     <string name="CanalDeNotificacion_ID_ParosYReanudaciones">ParosYReanudaciones</string>
+    <string name="CanalDeNotificacion_ID_NotificacionesPush">NotificacionesPush</string>
     <string name="Notificacion_Titulo_ParoEnUnaMaquina">Paro en una maquina</string>
     <string name="ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet">Para poder usar la aplicacion se requiere una conexion a Internet. Se le recomienda usar una red WIFI pero tambien es posible usar una conexion de datos moviles.</string>
     <string name="Entendido">Entendido</string>
