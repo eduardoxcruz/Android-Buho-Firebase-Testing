@@ -42,11 +42,9 @@
     <string name="DescargaIniciada">Descarga iniciada. Por favor, espere...</string>
     <string name="DescargaFinalizada">¡Descarga finalizada!</string>
     <string name="DescargandoActualizacion">Descargando actualizacion de Buho</string>
-    <string name="CanalDeNotificacion_Nombre_ParosYReanudaciones">Paros y Reanudaciones</string>
-    <string name="CanalDeNotificacion_Descripcion_ParosYReanudaciones">Paros y reanudaciones de las maquinas productoras.</string>
-    <string name="CanalDeNotificacion_ID_ParosYReanudaciones">ParosYReanudaciones</string>
+    <string name="CanalDeNotificacion_Nombre_NotificacionesPush">Notificaciones desde el servidor</string>
+    <string name="CanalDeNotificacion_Descripcion_NotificacionesPush">Notificaciones enviadas desde el servidor. Se recomienda mantenerlas siempre activas.</string>
     <string name="CanalDeNotificacion_ID_NotificacionesPush">NotificacionesPush</string>
-    <string name="Notificacion_Titulo_ParoEnUnaMaquina">Paro en una maquina</string>
     <string name="ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet">Para poder usar la aplicacion se requiere una conexion a Internet. Se le recomienda usar una red WIFI pero tambien es posible usar una conexion de datos moviles.</string>
     <string name="Entendido">Entendido</string>
     <string name="VolverAIntentarlo">Volver a intentarlo</string>

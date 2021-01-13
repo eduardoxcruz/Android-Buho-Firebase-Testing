@@ -1,7 +1,9 @@
 package com.aisoftware.firebasetesting.Activitys
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
+import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var canalesDeNotificaciones: Notificaciones
     private lateinit var notificacionesFCM : FCM_PushNotifications
 
+    @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         canalesDeNotificaciones = Notificaciones(contexto)
         permisosDeLaApp = Permisos(contexto, activity)
         notificacionesFCM = FCM_PushNotifications(contexto)
+
+        canalesDeNotificaciones.CrearCanalDeNotificacion(R.string.CanalDeNotificacion_ID_NotificacionesPush,
+            R.string.CanalDeNotificacion_Nombre_NotificacionesPush,
+            R.string.CanalDeNotificacion_Descripcion_NotificacionesPush,
+            NotificationManager.IMPORTANCE_MAX)
 
         notificacionesFCM.SuscribirATema("AvisosDelServidor")
 
