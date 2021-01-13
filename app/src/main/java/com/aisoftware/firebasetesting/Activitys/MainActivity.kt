@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import com.aisoftware.firebasetesting.Clases.*
 import com.aisoftware.firebasetesting.R
 import com.github.javiersantos.appupdater.AppUpdaterUtils
@@ -29,13 +28,6 @@ class MainActivity : AppCompatActivity() {
         actualizadorDeLaApp = Actualizaciones(contexto, activity)
         canalesDeNotificaciones = Notificaciones(contexto)
         permisosDeLaApp = Permisos(contexto, activity)
-
-        canalesDeNotificaciones.CrearCanalDeNotificacion(
-            R.string.CanalDeNotificacion_ID_ParosYReanudaciones,
-            R.string.CanalDeNotificacion_Nombre_ParosYReanudaciones,
-            R.string.CanalDeNotificacion_Descripcion_ParosYReanudaciones,
-            NotificationCompat.PRIORITY_MAX
-        )
 
     }
 
