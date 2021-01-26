@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.Clases;
+package com.aisoftware.firebasetesting.Servicios;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -41,7 +41,7 @@ public class Actualizaciones {
         this.rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
         this.UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
         this.archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
-        this.urlDeLaActualizacion = "https://github.com/eduardoxcruz/Publish/releases/latest/download/app-debug.apk";
+        this.urlDeLaActualizacion = "https://github.com/eduardoxcruz/FirebaseTesting-Releases/releases/latest/download/app-debug.apk";
         this.contexto = Contexto;
         this.updaterUtils = new AppUpdaterUtils(contexto);
         this.appUpdater = new AppUpdater(contexto);

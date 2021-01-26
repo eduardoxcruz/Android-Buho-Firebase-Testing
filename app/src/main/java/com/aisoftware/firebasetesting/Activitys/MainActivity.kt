@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aisoftware.firebasetesting.Clases.*
 import com.aisoftware.firebasetesting.R
+import com.aisoftware.firebasetesting.Servicios.Actualizaciones
 import com.aisoftware.firebasetesting.Servicios.FCM_PushNotifications
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.enums.AppUpdaterError
@@ -30,15 +31,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        actualizadorDeLaApp = Actualizaciones(contexto, activity)
-        canalesDeNotificaciones = Notificaciones(contexto)
+        actualizadorDeLaApp =
+            Actualizaciones(
+                contexto,
+                activity
+            )
+        canalesDeNotificaciones =
+            Notificaciones(contexto)
         permisosDeLaApp = Permisos(contexto, activity)
         notificacionesFCM = FCM_PushNotifications(contexto)
 
-        canalesDeNotificaciones.CrearCanalDeNotificacion(R.string.CanalDeNotificacion_ID_NotificacionesPush,
+        canalesDeNotificaciones.CrearCanalDeNotificacion(
+            R.string.CanalDeNotificacion_ID_NotificacionesPush,
             R.string.CanalDeNotificacion_Nombre_NotificacionesPush,
             R.string.CanalDeNotificacion_Descripcion_NotificacionesPush,
-            NotificationManager.IMPORTANCE_MAX)
+            NotificationManager.IMPORTANCE_MAX
+        )
 
         notificacionesFCM.SuscribirATema("AvisosDelServidor")
 
