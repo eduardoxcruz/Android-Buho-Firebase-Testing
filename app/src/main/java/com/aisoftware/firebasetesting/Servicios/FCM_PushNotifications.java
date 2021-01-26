@@ -14,14 +14,17 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
 
     private Context contexto;
 
-    public FCM_PushNotifications(Context Contexto){
+    public FCM_PushNotifications() {
+    }
+
+    public FCM_PushNotifications(Context Contexto) {
 
         this.contexto = Contexto;
 
     }
 
 
-    public void SuscribirATema(final String tema){
+    public void SuscribirATema(final String tema) {
 
         FirebaseMessaging.getInstance().subscribeToTopic(tema).addOnCompleteListener(new OnCompleteListener<Void>()
         {
