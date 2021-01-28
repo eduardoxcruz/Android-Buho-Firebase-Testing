@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.Activitys
+package com.aisoftware.firebasetesting.UI
 
 import android.annotation.SuppressLint
 import android.app.Activity

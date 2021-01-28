@@ -42,7 +42,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".Activitys.MainActivity">
+        <activity android:name=".UI.MainActivity">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />
