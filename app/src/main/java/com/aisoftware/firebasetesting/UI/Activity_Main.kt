@@ -18,14 +18,14 @@ import com.github.javiersantos.appupdater.enums.AppUpdaterError
 import com.github.javiersantos.appupdater.objects.Update
 import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
-class MainActivity : AppCompatActivity() {
+class Activity_Main : AppCompatActivity() {
 
-    private val contexto : Context = this@MainActivity
-    private val activity : Activity = this@MainActivity
-    private lateinit var permisosDeLaApp : Permisos
-    private lateinit var actualizadorDeLaApp : Actualizaciones
+    private val contexto: Context = this@Activity_Main
+    private val activity: Activity = this@Activity_Main
+    private lateinit var permisosDeLaApp: Permisos
+    private lateinit var actualizadorDeLaApp: Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones
-    private lateinit var notificacionesFCM : FCM_PushNotifications
+    private lateinit var notificacionesFCM: FCM_PushNotifications
 
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                             } else {
                                 actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
                                 val irAContenedorFinal =
-                                    Intent(contexto, ContenedorPrincipalActivity::class.java)
+                                    Intent(contexto, Activity_ContenedorPrincipal::class.java)
                                 startActivity(irAContenedorFinal)
                                 finish()
                             }

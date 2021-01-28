@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aisoftware.firebasetesting.R;
 
-public class ContenedorPrincipalActivity extends AppCompatActivity {
+public class Activity_ContenedorPrincipal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
