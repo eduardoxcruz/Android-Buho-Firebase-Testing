@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                             } else {
                                 actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
                                 val irAContenedorFinal =
-                                    Intent(contexto, ContenedorFinalActivity::class.java)
+                                    Intent(contexto, ContenedorPrincipalActivity::class.java)
                                 startActivity(irAContenedorFinal)
                                 finish()
                             }

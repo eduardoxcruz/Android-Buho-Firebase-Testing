@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aisoftware.firebasetesting.R;
 
-public class ContenedorFinalActivity extends AppCompatActivity {
+public class ContenedorPrincipalActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contenedor_final);
+        setContentView(R.layout.activity_contenedor_principal);
     }
 }
