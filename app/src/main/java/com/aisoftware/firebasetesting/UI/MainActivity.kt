@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -48,22 +49,30 @@ class MainActivity : AppCompatActivity() {
             NotificationManager.IMPORTANCE_MAX
         )
 
-        notificacionesFCM.SuscribirATema("AvisosDelServidor")
-
     }
 
     override fun onStart() {
         super.onStart()
+    }
 
-        if (Internet(contexto).ExisteConexionAInternet())
-        {
+    override fun onRestart() {
+        super.onRestart()
+    }
 
-            if(!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos()){
+    override fun onResume() {
+        super.onResume()
+
+        if (Internet(contexto).ExisteConexionAInternet()) {
+
+            notificacionesFCM.SuscribirATema("AvisosDelServidor")
+
+            if (!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos()) {
 
                 Alertas(contexto)
                     .GenerarAlertaDeAviso()
                     .setMessage(R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono)
-                    .setPositiveButton(R.string.Entendido
+                    .setPositiveButton(
+                        R.string.Entendido
                     )
                     { dialog, wich ->
                         permisosDeLaApp.SolicitarPermisosRequeridos()
@@ -75,17 +84,57 @@ class MainActivity : AppCompatActivity() {
                     .create()
                     .show()
 
+            } else {
+                actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
+                    object : AppUpdaterUtils.UpdateListener {
+                        override fun onSuccess(update: Update, isUpdateAvailable: Boolean) {
+                            if (isUpdateAvailable) {
+                                actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
+                                    { dialogInterface, i ->
+                                        actualizadorDeLaApp.DescargarActualizacion()
+                                    },
+                                    { dialogInterface, i ->
+                                        finish()
+                                    }
+                                )
+                            } else {
+                                actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
+                                val irAContenedorFinal =
+                                    Intent(contexto, ContenedorFinalActivity::class.java)
+                                startActivity(irAContenedorFinal)
+                                finish()
+                            }
+                        }
+
+                        override fun onFailed(error: AppUpdaterError) {
+
+                            Alertas(contexto)
+                                .GenerarAlertaDeError()
+                                .setMessage(R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones)
+                                .setPositiveButton(R.string.VolverAIntentarlo)
+                                { dialog, wich ->
+                                    recreate()
+                                }
+                                .setNegativeButton(R.string.Cancelar)
+                                { dialog, wich ->
+                                    dialog.dismiss()
+                                }
+                                .create()
+                                .show()
+
+                        }
+
+                    }
+                )
             }
 
-        }
-
-        else
-        {
+        } else {
 
             Alertas(contexto)
                 .GenerarAlertaDeError()
                 .setMessage(R.string.ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet)
-                .setPositiveButton(R.string.VolverAIntentarlo
+                .setPositiveButton(
+                    R.string.VolverAIntentarlo
                 )
                 { dialog, wich ->
                     recreate()
@@ -98,60 +147,6 @@ class MainActivity : AppCompatActivity() {
                 .show()
 
         }
-
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
-            object : AppUpdaterUtils.UpdateListener
-            {
-                    override fun onSuccess(update: Update, isUpdateAvailable: Boolean)
-                    {
-                        if (isUpdateAvailable)
-                        {
-                            actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
-                                { dialogInterface, i ->
-                                    actualizadorDeLaApp.DescargarActualizacion()
-                                },
-                                { dialogInterface, i ->
-                                    finish()
-                                }
-                            )
-                        }
-
-                        else
-                        {
-                            actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
-                        }
-                    }
-
-                    override fun onFailed(error: AppUpdaterError)
-                    {
-
-                        Alertas(contexto)
-                            .GenerarAlertaDeError()
-                            .setMessage(R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones)
-                            .setPositiveButton(R.string.VolverAIntentarlo)
-                            { dialog, wich ->
-                                recreate()
-                            }
-                            .setNegativeButton(R.string.Cancelar)
-                            { dialog, wich ->
-                                dialog.dismiss()
-                            }
-                            .create()
-                            .show()
-
-                    }
-
-                }
-        )
 
     }
 
@@ -168,6 +163,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when (requestCode) {
             REQUEST_CODE -> {
