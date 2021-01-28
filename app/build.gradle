@@ -28,6 +28,12 @@ android {
 dependencies {
 
     def nav_version = "2.3.3"
+    def fragment_version = "1.2.5"
+
+    // Java language implementation
+    implementation "androidx.fragment:fragment:$fragment_version"
+    // Kotlin
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
