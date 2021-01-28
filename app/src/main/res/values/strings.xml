@@ -4,6 +4,15 @@
     <string name="Exito">Exito</string>
     <string name="Error">Error</string>
     <string name="Aviso">Aviso</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="IniciandoSesion...">Iniciando Sesion…</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Actualizar">Actualizar</string>
+    <string name="Entendido">Entendido</string>
+    <string name="VolverAIntentarlo">Volver a intentarlo</string>
+    <string name="Inicio">Inicio</string>
+
     <string name="EscanearCodigoQR">Escanear Codigo QR</string>
     <string name="NumeroDeTelar">Numero de telar:</string>
     <string name="MarcasEsperadas">Marcas Esperadas:</string>
@@ -14,7 +23,6 @@
     <string name="HacerRegitro">Hacer registro</string>
     <string name="IniciarSesion">Iniciar Sesion</string>
     <string name="NumeroDeTrabajador">Numero de trabajador</string>
-    <string name="Contraseña">Contraseña</string>
     <string name="GuardarDatosDeLogin">Guardar datos de Login</string>
     <string name="HayCamposVaciosVerificalosYVuelveAIntentarlo">Hay campos vacios. Verificalos y vuelve a intentarlo</string>
     <string name="LaContraseñaNoCoincideConElTrabajador">La contraseña no coincide con el trabajador</string>
@@ -23,7 +31,6 @@
     <string name="ElCodigoQRNoPuedeEstarVacio">El codigo QR no puede estar vacio. Vuelva a intentarlo.</string>
     <string name="LaMaquinaNoEstaRegistradaEnLaBD">La maquina no esta registrada en la BD.</string>
     <string name="QueTipoDeRegistroQuieresHacer">¿Que tipo de registro quieres hacer?</string>
-    <string name="IniciandoSesion...">Iniciando Sesion...</string>
     <string name="ErrorAlObtenerLosHorariosDeLosTurnos">Error al obtener los horarios de los turnos. Verifiquelos e intentelo de nuevo.</string>
     <string name="NoSePudoObtenerElTurnoActual">No se pudo obtener el turno actual. Verifique los horarios de los turnos e intentelo de nuevo.</string>
     <string name="SeccionDelTelar">Seccion del Telar:</string>
@@ -34,19 +41,14 @@
     <string name="HorasPerdidas">Horas perdidas:</string>
     <string name="ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono">Para que la aplicacion funcione correctamente se debe permitir ciertos accesos al telefono. Por favor, acepte la solicitud de los permisos para poder continuar.</string>
     <string name="FaltanPermisosPorConceder">Faltan permisos por conceder. Por favor, conceda los permisos solicitados para podere continuar.</string>
-    <string name="Aceptar">Aceptar</string>
-    <string name="Cancelar">Cancelar</string>
     <string name="HayUnaActualizacionDisponible">Hay una actualizacion disponible</string>
-    <string name="Actualizar">Actualizar</string>
     <string name="HuboUnErrorAlConectarConElServidorDeActualizaciones">Hubo un error al conectar con el servidor de actualizaciones. Pongase en contacto con el personal de Algoritmos Inteligentes lo mas pronto posible.</string>
-    <string name="DescargaIniciada">Descarga iniciada. Por favor, espere...</string>
+    <string name="DescargaIniciada">Descarga iniciada. Por favor, espere…</string>
     <string name="DescargaFinalizada">¡Descarga finalizada!</string>
     <string name="DescargandoActualizacion">Descargando actualizacion de Buho</string>
     <string name="CanalDeNotificacion_Nombre_NotificacionesPush">Notificaciones desde el servidor</string>
     <string name="CanalDeNotificacion_Descripcion_NotificacionesPush">Notificaciones enviadas desde el servidor. Se recomienda mantenerlas siempre activas.</string>
     <string name="CanalDeNotificacion_ID_NotificacionesPush">NotificacionesPush</string>
     <string name="ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet">Para poder usar la aplicacion se requiere una conexion a Internet. Se le recomienda usar una red WIFI pero tambien es posible usar una conexion de datos moviles.</string>
-    <string name="Entendido">Entendido</string>
-    <string name="VolverAIntentarlo">Volver a intentarlo</string>
     <string name="ElServicioEstaALaEscuchaDeNuevosParosYReanudaciones">El servicio esta buscando nuevos paros y reanudaciones en la Base de Datos</string>
 </resources>
