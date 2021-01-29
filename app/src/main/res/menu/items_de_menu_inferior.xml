@@ -3,16 +3,21 @@
 
     <item
         android:id="@+id/pantalla_inicial"
-        android:icon="@drawable/error"
+        android:icon="@drawable/home"
         android:title="@string/Inicio" />
 
     <item
         android:id="@+id/pantalla_registro_de_marcas"
-        android:icon="@drawable/error"
+        android:icon="@drawable/factory"
         android:title="@string/Marcas" />
 
     <item
         android:id="@+id/pantalla_notificaciones"
-        android:icon="@drawable/error"
+        android:icon="@drawable/newsfeed"
         android:title="@string/Notificaciones" />
+
+    <item
+        android:id="@+id/pantalla_desempeño"
+        android:icon="@drawable/combochart"
+        android:title="@string/Desempeño" />
 </menu>
