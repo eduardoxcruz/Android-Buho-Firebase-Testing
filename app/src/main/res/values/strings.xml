@@ -12,6 +12,8 @@
     <string name="Entendido">Entendido</string>
     <string name="VolverAIntentarlo">Volver a intentarlo</string>
     <string name="Inicio">Inicio</string>
+    <string name="Notificaciones">Notificaciones</string>
+    <string name="Marcas">Marcas</string>
 
     <string name="EscanearCodigoQR">Escanear Codigo QR</string>
     <string name="NumeroDeTelar">Numero de telar:</string>
