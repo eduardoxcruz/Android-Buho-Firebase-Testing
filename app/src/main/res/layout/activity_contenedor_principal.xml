@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.Activity_ContenedorPrincipal">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentHostDeNavegacion"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/grafico_de_navegacion" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
