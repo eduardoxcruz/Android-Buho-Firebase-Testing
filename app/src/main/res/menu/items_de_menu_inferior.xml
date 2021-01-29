@@ -6,4 +6,13 @@
         android:icon="@drawable/error"
         android:title="@string/Inicio" />
 
+    <item
+        android:id="@+id/pantalla_registro_de_marcas"
+        android:icon="@drawable/error"
+        android:title="@string/Marcas" />
+
+    <item
+        android:id="@+id/pantalla_notificaciones"
+        android:icon="@drawable/error"
+        android:title="@string/Notificaciones" />
 </menu>
