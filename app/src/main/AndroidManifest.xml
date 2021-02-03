@@ -53,6 +53,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".UI.ActivityPrincipalNavBar"
+            android:label="@string/Inicio" />
+
     </application>
 
 </manifest>

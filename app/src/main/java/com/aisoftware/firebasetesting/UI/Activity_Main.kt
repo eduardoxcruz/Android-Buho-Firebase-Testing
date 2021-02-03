@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -98,10 +99,10 @@ class Activity_Main : AppCompatActivity() {
                                 )
                             } else {
                                 actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
-                                /*val irAContenedorFinal =
-                                    Intent(contexto, Activity_ContenedorPrincipal::class.java)
+                                val irAContenedorFinal =
+                                    Intent(contexto, ActivityPrincipalNavBar::class.java)
                                 startActivity(irAContenedorFinal)
-                                finish()*/
+                                finish()
                             }
                         }
 
