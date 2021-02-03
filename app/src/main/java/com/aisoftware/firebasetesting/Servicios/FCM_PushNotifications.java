@@ -20,6 +20,16 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
     public FCM_PushNotifications() {
     }
 
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+    }
+
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+    }
+
     public FCM_PushNotifications(Context Contexto) {
         this.contexto = Contexto;
     }
@@ -27,11 +37,9 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
 
     public void SuscribirATema(final String tema) {
 
-        FirebaseMessaging.getInstance().subscribeToTopic(tema).addOnCompleteListener(new OnCompleteListener<Void>()
-        {
+        FirebaseMessaging.getInstance().subscribeToTopic(tema).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
+            public void onComplete(@NonNull Task<Void> task) {
 
                 String confirmacionDeSuscripcion = "Cliente no suscrito al tema.";
 
