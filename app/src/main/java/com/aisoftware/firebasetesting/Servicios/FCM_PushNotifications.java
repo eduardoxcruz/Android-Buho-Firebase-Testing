@@ -4,7 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import com.aisoftware.firebasetesting.Clases.Notificaciones;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -16,24 +19,35 @@ import static android.content.ContentValues.TAG;
 public class FCM_PushNotifications extends FirebaseMessagingService {
 
     private Context contexto;
+    private NotificationCompat.Builder notificacion;
 
     public FCM_PushNotifications() {
-    }
-
-    @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-    }
-
-    @Override
-    public void onDeletedMessages() {
-        super.onDeletedMessages();
     }
 
     public FCM_PushNotifications(Context Contexto) {
         this.contexto = Contexto;
     }
 
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+
+        if (remoteMessage.getNotification() != null) {
+            int idDeLaNotificacion = ObtenerIdDeUnTagDeFCM(remoteMessage.getNotification().getTag());
+
+            notificacion = new Notificaciones(this).CrearCuerpoDeNoitificacion(
+                    this.getString(com.aisoftware.firebasetesting.R.string.CanalDeNotificacion_ID_NotificacionesPush),
+                    remoteMessage.getNotification().getTitle(),
+                    remoteMessage.getNotification().getBody());
+
+            NotificationManagerCompat.from(this).notify(idDeLaNotificacion, notificacion.build());
+        } else Log.d(TAG, "El cuerpo de la notificacion esta vacio");
+    }
+
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+    }
 
     public void SuscribirATema(final String tema) {
 
@@ -52,4 +66,15 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
 
     }
 
+    private int ObtenerIdDeUnTagDeFCM(String tag) {
+
+        String tag_replaced = tag.replace("topic_key_", "");
+        int id = 0;
+
+        while (tag_replaced.length() > 3) {
+            tag_replaced = tag_replaced.substring(0, tag_replaced.length() - 1);
+        }
+
+        return id = Integer.parseInt(tag_replaced);
+    }
 }
