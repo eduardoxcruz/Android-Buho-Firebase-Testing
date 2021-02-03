@@ -1,7 +1,7 @@
 package com.aisoftware.firebasetesting.Servicios;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -9,6 +9,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+
+import static android.content.ContentValues.TAG;
 
 public class FCM_PushNotifications extends FirebaseMessagingService {
 
@@ -18,9 +21,7 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
     }
 
     public FCM_PushNotifications(Context Contexto) {
-
         this.contexto = Contexto;
-
     }
 
 
@@ -32,11 +33,11 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
             public void onComplete(@NonNull Task<Void> task)
             {
 
-                String confirmacion_de_Suscripcion = "Cliente suscrito correctamente al tema: " + tema;
+                String confirmacionDeSuscripcion = "Cliente no suscrito al tema.";
 
-                if(!task.isSuccessful()) confirmacion_de_Suscripcion = "No se pudo suscribir correctamente al tema: " + tema;
+                if (task.isSuccessful()) confirmacionDeSuscripcion = "Cliente suscrito al tema.";
 
-                Toast.makeText(contexto, confirmacion_de_Suscripcion, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, confirmacionDeSuscripcion);
 
             }
         });
