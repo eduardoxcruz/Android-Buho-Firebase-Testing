@@ -17,7 +17,7 @@
         android:title="@string/Empresa" />
 
     <item
-        android:id="@+id/navigation_desempeño"
+        android:id="@+id/navigation_desempeno"
         android:icon="@drawable/combochart"
         android:title="@string/Desempeño" />
 
