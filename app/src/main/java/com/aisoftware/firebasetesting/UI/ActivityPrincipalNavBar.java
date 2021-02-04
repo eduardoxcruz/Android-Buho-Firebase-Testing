@@ -26,7 +26,10 @@ public class ActivityPrincipalNavBar extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
-                R.id.navigation_notifications)
+                R.id.navigation_notifications,
+                R.id.navigation_desempeno,
+                R.id.navigation_empresa,
+                R.id.navigation_usuario)
                 .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

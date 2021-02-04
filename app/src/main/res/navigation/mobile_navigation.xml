@@ -16,4 +16,23 @@
         android:name="com.aisoftware.firebasetesting.UI.notifications.NotificationsFragment"
         android:label="@string/Notificaciones"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_empresa"
+        android:name="com.aisoftware.firebasetesting.UI.empresa.FragmentEmpresa"
+        android:label="@string/Empresa"
+        tools:layout="@layout/fragment_empresa" />
+
+    <fragment
+        android:id="@+id/navigation_desempeno"
+        android:name="com.aisoftware.firebasetesting.UI.desempeno.FragmentDesempeno"
+        android:label="@string/Desempeño"
+        tools:layout="@layout/fragment_desempeno" />
+
+    <fragment
+        android:id="@+id/navigation_usuario"
+        android:name="com.aisoftware.firebasetesting.UI.usuario.FragmentUsuario"
+        android:label="@string/Usuario"
+        tools:layout="@layout/fragment_usuario" />
+
 </navigation>
