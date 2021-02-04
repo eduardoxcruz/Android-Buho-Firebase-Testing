@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.ui.notifications;
+package com.aisoftware.firebasetesting.UI.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

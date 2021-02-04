@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.aisoftware.firebasetesting.ui.home.HomeFragment"
+        android:name="com.aisoftware.firebasetesting.UI.home.HomeFragment"
         android:label="@string/Inicio"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.aisoftware.firebasetesting.ui.notifications.NotificationsFragment"
+        android:name="com.aisoftware.firebasetesting.UI.notifications.NotificationsFragment"
         android:label="@string/Notificaciones"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

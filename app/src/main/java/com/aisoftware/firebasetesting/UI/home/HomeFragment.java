@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.ui.home;
+package com.aisoftware.firebasetesting.UI.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
