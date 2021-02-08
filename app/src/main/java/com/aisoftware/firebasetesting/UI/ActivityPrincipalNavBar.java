@@ -20,6 +20,7 @@ public class ActivityPrincipalNavBar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_principal_nav_bar);
 
         navView = findViewById(R.id.nav_view);
