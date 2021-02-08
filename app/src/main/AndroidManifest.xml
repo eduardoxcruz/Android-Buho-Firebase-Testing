@@ -44,7 +44,8 @@
 
         <activity
             android:name=".UI.Activity_Main"
-            android:theme="@style/AppTheme.SplashScreen">
+            android:theme="@style/AppTheme.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +56,8 @@
 
         <activity
             android:name=".UI.ActivityPrincipalNavBar"
-            android:label="@string/Inicio" />
+            android:label="@string/Inicio"
+            android:screenOrientation="portrait" />
 
     </application>
 
