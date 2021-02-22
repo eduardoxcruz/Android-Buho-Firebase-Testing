@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.UI.desempeno;
+package com.aisoftware.firebasetesting.ui.usuario;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 
 import com.aisoftware.firebasetesting.R;
 
-public class FragmentDesempeno extends Fragment {
+public class FragmentUsuario extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_desempeno, container, false);
+        return inflater.inflate(R.layout.fragment_usuario, container, false);
     }
 }

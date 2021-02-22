@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.aisoftware.firebasetesting.UI.home.HomeFragment"
+        android:name="com.aisoftware.firebasetesting.ui.home.HomeFragment"
         android:label="@string/Inicio"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.aisoftware.firebasetesting.UI.notifications.NotificationsFragment"
+        android:name="com.aisoftware.firebasetesting.ui.notifications.NotificationsFragment"
         android:label="@string/Notificaciones"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_empresa"
-        android:name="com.aisoftware.firebasetesting.UI.empresa.FragmentEmpresa"
+        android:name="com.aisoftware.firebasetesting.ui.empresa.FragmentEmpresa"
         android:label="@string/Empresa"
         tools:layout="@layout/fragment_empresa" />
 
     <fragment
         android:id="@+id/navigation_desempeno"
-        android:name="com.aisoftware.firebasetesting.UI.desempeno.FragmentDesempeno"
+        android:name="com.aisoftware.firebasetesting.ui.desempeno.FragmentDesempeno"
         android:label="@string/Desempeño"
         tools:layout="@layout/fragment_desempeno" />
 
     <fragment
         android:id="@+id/navigation_usuario"
-        android:name="com.aisoftware.firebasetesting.UI.usuario.FragmentUsuario"
+        android:name="com.aisoftware.firebasetesting.ui.usuario.FragmentUsuario"
         android:label="@string/Usuario"
         tools:layout="@layout/fragment_usuario" />
 

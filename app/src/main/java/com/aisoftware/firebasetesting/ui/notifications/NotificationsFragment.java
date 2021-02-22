@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.UI.home;
+package com.aisoftware.firebasetesting.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import com.aisoftware.firebasetesting.R;
 
-public class HomeFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         return root;
     }
 }

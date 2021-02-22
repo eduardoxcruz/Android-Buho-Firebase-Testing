@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.UI
+package com.aisoftware.firebasetesting.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,19 +9,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.aisoftware.firebasetesting.Clases.*
 import com.aisoftware.firebasetesting.R
-import com.aisoftware.firebasetesting.Servicios.Actualizaciones
-import com.aisoftware.firebasetesting.Servicios.FCM_PushNotifications
+import com.aisoftware.firebasetesting.clases.*
+import com.aisoftware.firebasetesting.servicios.Actualizaciones
 import com.github.javiersantos.appupdater.AppUpdaterUtils
 import com.github.javiersantos.appupdater.enums.AppUpdaterError
 import com.github.javiersantos.appupdater.objects.Update
 import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
-class Activity_Main : AppCompatActivity() {
+class ActivityMain : AppCompatActivity() {
 
-    private val contexto: Context = this@Activity_Main
-    private val activity: Activity = this@Activity_Main
+    private val contexto: Context = this@ActivityMain
+    private val activity: Activity = this@ActivityMain
     private lateinit var permisosDeLaApp: Permisos
     private lateinit var actualizadorDeLaApp: Actualizaciones
     private lateinit var canalesDeNotificaciones: Notificaciones

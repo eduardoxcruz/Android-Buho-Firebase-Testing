@@ -1,4 +1,4 @@
-package com.aisoftware.firebasetesting.UI;
+package com.aisoftware.firebasetesting.ui;
 
 import android.os.Bundle;
 
