@@ -25,40 +25,39 @@ import java.io.File;
 
 public class Actualizaciones {
 
-    private String nombreDelArchivoDeActualizacion;
+    private final static String NOMBRE_DEL_ARCHIVO_DE_ACTUALIZACION = "buhoUpdate.apk";
+    private final static String URL_DEL_APK_DE_ACTUALIZACION = "https://github.com/eduardoxcruz/FirebaseTesting-Releases/releases/latest/download/app-debug.apk";
+    private final static String URL_DEL_XML_DE_INFO_DE_ACTUALIZACIONES = "https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml";
     private String rutaDeDescargaDelArchivoDeActualizacion;
-    private Uri UriDelArchivoDeActualizacion;
+    private Uri uriDelArchivoDeActualizacion;
     private File archivoDeActualizacion;
-    private String urlDeLaActualizacion;
     private AppUpdaterUtils updaterUtils;
     private AppUpdater appUpdater;
     private Context contexto;
     private Activity activity;
 
-    public Actualizaciones(Context Contexto, Activity Activity){
+    public Actualizaciones(Context contexto, Activity activity) {
 
-        this.nombreDelArchivoDeActualizacion = "buhoUpdate.apk";
-        this.rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + nombreDelArchivoDeActualizacion;
-        this.UriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
+        this.rutaDeDescargaDelArchivoDeActualizacion = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + NOMBRE_DEL_ARCHIVO_DE_ACTUALIZACION;
+        this.uriDelArchivoDeActualizacion = Uri.parse("file://" + rutaDeDescargaDelArchivoDeActualizacion);
         this.archivoDeActualizacion = new File(rutaDeDescargaDelArchivoDeActualizacion);
-        this.urlDeLaActualizacion = "https://github.com/eduardoxcruz/FirebaseTesting-Releases/releases/latest/download/app-debug.apk";
-        this.contexto = Contexto;
-        this.updaterUtils = new AppUpdaterUtils(contexto);
-        this.appUpdater = new AppUpdater(contexto);
-        this.activity = Activity;
+        this.contexto = contexto;
+        this.updaterUtils = new AppUpdaterUtils(this.contexto);
+        this.appUpdater = new AppUpdater(this.contexto);
+        this.activity = activity;
 
     }
 
-    public void ConsultarActualizacionesNuevasEnElServidor(AppUpdaterUtils.UpdateListener accionDelListener){
+    public void buscarActualizacionesNuevas(AppUpdaterUtils.UpdateListener accionDelListener) {
 
         updaterUtils.setUpdateFrom(UpdateFrom.XML)
-                .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
+                .setUpdateXML(URL_DEL_XML_DE_INFO_DE_ACTUALIZACIONES)
                 .withListener(accionDelListener)
                 .start();
 
     }
 
-    public void MostrarMensajeDeActualizacionDisponible(DialogInterface.OnClickListener accionesDelBotonActualizar, DialogInterface.OnClickListener accionesDelBotonCancelar){
+    public void mostrarMensajeDeActualizacionDisponible(DialogInterface.OnClickListener accionesDelBotonActualizar, DialogInterface.OnClickListener accionesDelBotonCancelar) {
 
         appUpdater.setDisplay(Display.DIALOG)
                 .setTitleOnUpdateAvailable(R.string.HayUnaActualizacionDisponible)
@@ -68,7 +67,7 @@ public class Actualizaciones {
                 .setButtonDismiss(R.string.Cancelar)
                 .setButtonDoNotShowAgain(null)
                 .setUpdateFrom(UpdateFrom.XML)
-                .setUpdateXML("https://algoritmosinteligentes.000webhostapp.com/VersionesTQ/androidver.xml")
+                .setUpdateXML(URL_DEL_XML_DE_INFO_DE_ACTUALIZACIONES)
                 .setButtonUpdateClickListener(accionesDelBotonActualizar)
                 .setButtonDismissClickListener(accionesDelBotonCancelar)
                 .start();
@@ -76,15 +75,15 @@ public class Actualizaciones {
     }
 
     //Fuente: https://stackoverflow.com/questions/4967669/android-install-apk-programmatically
-    public void DescargarActualizacion(){
+    public void descargarActualizacion() {
 
-        if(archivoDeActualizacion.exists()){
+        if (archivoDeActualizacion.exists()) {
             archivoDeActualizacion.delete();
         }
 
-        DownloadManager.Request solicitudDeDescarga = new DownloadManager.Request(Uri.parse(urlDeLaActualizacion));
+        DownloadManager.Request solicitudDeDescarga = new DownloadManager.Request(Uri.parse(URL_DEL_APK_DE_ACTUALIZACION));
         solicitudDeDescarga.setTitle("Descargando actualizacion de Buho");
-        solicitudDeDescarga.setDestinationUri(UriDelArchivoDeActualizacion);
+        solicitudDeDescarga.setDestinationUri(uriDelArchivoDeActualizacion);
 
         // get download service and enqueue file
         DownloadManager managerDeDescarga = (DownloadManager) contexto.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -93,22 +92,22 @@ public class Actualizaciones {
         Toast.makeText(contexto, R.string.DescargaIniciada, Toast.LENGTH_LONG).show();
 
         //set BroadcastReceiver to install app when .apk is downloaded
-        BroadcastReceiver AlCompletarLaDescarga = new BroadcastReceiver() {
+        BroadcastReceiver alCompletarLaDescarga = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
 
                 Toast.makeText(contexto, R.string.DescargaFinalizada, Toast.LENGTH_LONG).show();
 
-               contexto.unregisterReceiver(this);
+                contexto.unregisterReceiver(this);
 
-               InstalarActualizacion();
+                instalarActualizacion();
 
-               activity.finish();
+                activity.finish();
 
             }
         };
 
-        contexto.registerReceiver(AlCompletarLaDescarga, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        contexto.registerReceiver(alCompletarLaDescarga, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
     }
 
@@ -118,18 +117,16 @@ public class Actualizaciones {
     //https://androidwave.com/download-and-install-apk-programmatically/
     //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/
      */
-    public void InstalarActualizacion(){
+    public void instalarActualizacion() {
 
-        if(Build.VERSION.SDK_INT == Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {
 
             Intent instalarApp = new Intent(Intent.ACTION_VIEW);
             instalarApp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             instalarApp.setDataAndType(Uri.fromFile(archivoDeActualizacion), "application/vnd.android.package-archive");
             activity.startActivity(instalarApp);
 
-        }
-
-        else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
             Uri fileUri = Uri.fromFile(archivoDeActualizacion);
             fileUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", archivoDeActualizacion);
@@ -145,7 +142,7 @@ public class Actualizaciones {
 
     }
 
-    public void DetenerBusquedaDeActualizaciones(){
+    public void detenerBusquedaDeActualizaciones() {
 
         appUpdater.stop();
         updaterUtils.stop();

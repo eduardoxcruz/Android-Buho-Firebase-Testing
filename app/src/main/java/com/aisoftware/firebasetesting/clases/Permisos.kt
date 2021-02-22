@@ -12,56 +12,68 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 
-class Permisos(Contexto : Context, Activity : Activity) {
+class Permisos(contexto: Context, activity: Activity) {
 
-    private val contexto = Contexto
-    private val activity = Activity
+    private val contexto = contexto
+    private val activity = activity
 
-    fun VerificarQueTodosLosPermisosEstenConcedidos() : Boolean{
+    fun verificarQueTodosLosPermisosEstenConcedidos(): Boolean {
 
-        var todosLosPermisosConcedidos : Boolean = false
-        var concedido_PermisosDelTelefono : Boolean = false
-        var concedido_PermisoDeInstalacionDePaquetes : Boolean = false
+        var todosLosPermisosConcedidos: Boolean = false
+        var concedidosPermisosDelTelefono: Boolean = false
+        var concedidoPermisoDeInstalacionDePaquetes: Boolean = false
 
-        if(ContextCompat.checkSelfPermission(contexto, Manifest.permission.WRITE_EXTERNAL_STORAGE) +
-           ContextCompat.checkSelfPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE) +
-           ContextCompat.checkSelfPermission(contexto, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
-        {
-            concedido_PermisosDelTelefono = true
+        if (ContextCompat.checkSelfPermission(
+                contexto,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) +
+            ContextCompat.checkSelfPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE) +
+            ContextCompat.checkSelfPermission(
+                contexto,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            concedidosPermisosDelTelefono = true
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            if (contexto.getPackageManager().canRequestPackageInstalls()) concedido_PermisoDeInstalacionDePaquetes = true
+            if (contexto.getPackageManager()
+                    .canRequestPackageInstalls()
+            ) concedidoPermisoDeInstalacionDePaquetes = true
 
-        }
-
-        else concedido_PermisoDeInstalacionDePaquetes = true
+        } else concedidoPermisoDeInstalacionDePaquetes = true
 
 
-        if(concedido_PermisosDelTelefono && concedido_PermisoDeInstalacionDePaquetes == true)
-        {
+        if (concedidosPermisosDelTelefono && concedidoPermisoDeInstalacionDePaquetes == true) {
             todosLosPermisosConcedidos = true
         }
 
         return todosLosPermisosConcedidos
     }
 
-    fun SolicitarPermisosRequeridos(){
+    fun solicitarPermisos() {
 
         requestPermissions(
             activity,
-            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA),
-            REQUEST_CODE)
+                Manifest.permission.CAMERA
+            ),
+            REQUEST_CODE
+        )
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            if (!contexto.getPackageManager().canRequestPackageInstalls()){
+            if (!contexto.getPackageManager().canRequestPackageInstalls()) {
 
-                activity.startActivity(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + "com.aisoftware.firebasetesting")));
+                activity.startActivity(
+                    Intent(
+                        Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                        Uri.parse("package:" + "com.aisoftware.firebasetesting")
+                    )
+                );
 
             }
 

@@ -8,26 +8,23 @@ class Alertas(Contexto : Context) : AlertDialog.Builder(Contexto) {
 
     private val alertDialog = AlertDialog.Builder(Contexto).setCancelable(false)
 
-    fun GenerarAlertaDeError() : AlertDialog.Builder{
+    fun generarAlertaDeError(): AlertDialog.Builder {
 
-        alertDialog.setIcon(R.drawable.error).
-        setTitle(R.string.Error)
-
-        return alertDialog
-    }
-
-    fun GenerarAlertaDeExito() : AlertDialog.Builder{
-
-        alertDialog.setIcon(R.drawable.success).
-        setTitle(R.string.Exito)
+        alertDialog.setIcon(R.drawable.error).setTitle(R.string.Error)
 
         return alertDialog
     }
 
-    fun GenerarAlertaDeAviso() : AlertDialog.Builder{
+    fun generarAlertaDeExito(): AlertDialog.Builder {
 
-        alertDialog.setIcon(R.drawable.alert).
-        setTitle(R.string.Aviso)
+        alertDialog.setIcon(R.drawable.success).setTitle(R.string.Exito)
+
+        return alertDialog
+    }
+
+    fun generarAlertaDeAviso(): AlertDialog.Builder {
+
+        alertDialog.setIcon(R.drawable.alert).setTitle(R.string.Aviso)
 
         return alertDialog
     }

@@ -4,17 +4,17 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-public class Internet {
+public class MonitorDeRed {
 
     private Context contexto;
 
-    public Internet(Context contexto){
+    public MonitorDeRed(Context contexto) {
 
         this.contexto = contexto;
 
     }
 
-    public boolean ExisteConexionAInternet(){
+    public boolean existeConexionAInternet() {
 
         boolean existeConexion = false;
 

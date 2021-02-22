@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.aisoftware.firebasetesting.Clases.Notificaciones;
+import com.aisoftware.firebasetesting.clases.Notificaciones;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -24,8 +24,8 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
     public FCM_PushNotifications() {
     }
 
-    public FCM_PushNotifications(Context Contexto) {
-        this.contexto = Contexto;
+    public FCM_PushNotifications(Context contexto) {
+        this.contexto = contexto;
     }
 
     @Override
@@ -33,9 +33,9 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
         if (remoteMessage.getNotification() != null) {
-            int idDeLaNotificacion = ObtenerIdDeUnTagDeFCM(remoteMessage.getNotification().getTag());
+            int idDeLaNotificacion = obtenerIdDeUnTagDeFCM(remoteMessage.getNotification().getTag());
 
-            notificacion = new Notificaciones(this).CrearCuerpoDeNoitificacion(
+            notificacion = new Notificaciones(this).crearCuerpoDeNoitificacion(
                     this.getString(com.aisoftware.firebasetesting.R.string.CanalDeNotificacion_ID_NotificacionesPush),
                     remoteMessage.getNotification().getTitle(),
                     remoteMessage.getNotification().getBody());
@@ -49,7 +49,7 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
         super.onDeletedMessages();
     }
 
-    public void SuscribirATema(final String tema) {
+    public void suscribirATema(final String tema) {
 
         FirebaseMessaging.getInstance().subscribeToTopic(tema).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -66,7 +66,7 @@ public class FCM_PushNotifications extends FirebaseMessagingService {
 
     }
 
-    private int ObtenerIdDeUnTagDeFCM(String tag) {
+    private int obtenerIdDeUnTagDeFCM(String tag) {
 
         String tag_replaced = tag.replace("topic_key_", "");
         int id = 0;
