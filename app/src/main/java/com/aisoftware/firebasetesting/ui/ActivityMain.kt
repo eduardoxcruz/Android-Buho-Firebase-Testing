@@ -23,8 +23,6 @@ class ActivityMain : AppCompatActivity() {
     private val activity: Activity = this@ActivityMain
     private lateinit var permisosDeLaApp: Permisos
     private lateinit var actualizadorDeLaApp: Actualizaciones
-    private lateinit var canalesDeNotificaciones: Notificaciones
-    private lateinit var notificacionesFCM: FCM_PushNotifications
 
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +34,15 @@ class ActivityMain : AppCompatActivity() {
                 contexto,
                 activity
             )
-        canalesDeNotificaciones =
-            Notificaciones(contexto)
-        permisosDeLaApp = Permisos(contexto, activity)
-        notificacionesFCM = FCM_PushNotifications(contexto)
 
-        canalesDeNotificaciones.CrearCanalDeNotificacion(
+        Notificaciones(contexto).crearCanalDeNotificacion(
             R.string.CanalDeNotificacion_ID_NotificacionesPush,
             R.string.CanalDeNotificacion_Nombre_NotificacionesPush,
             R.string.CanalDeNotificacion_Descripcion_NotificacionesPush,
             NotificationManager.IMPORTANCE_MAX
         )
+
+        permisosDeLaApp = Permisos(contexto, activity)
 
     }
 
@@ -61,20 +57,18 @@ class ActivityMain : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if (Internet(contexto).ExisteConexionAInternet()) {
+        if (MonitorDeRed(contexto).existeConexionAInternet()) {
 
-            notificacionesFCM.SuscribirATema("AvisosDelServidor")
-
-            if (!permisosDeLaApp.VerificarQueTodosLosPermisosEstenConcedidos()) {
+            if (!permisosDeLaApp.verificarQueTodosLosPermisosEstenConcedidos()) {
 
                 Alertas(contexto)
-                    .GenerarAlertaDeAviso()
+                    .generarAlertaDeAviso()
                     .setMessage(R.string.ParaQueLaAplicacionFuncioneCorrecamenteSeDebePermitirCiertosAccesosAlTelefono)
                     .setPositiveButton(
                         R.string.Entendido
                     )
                     { dialog, wich ->
-                        permisosDeLaApp.SolicitarPermisosRequeridos()
+                        permisosDeLaApp.solicitarPermisos()
                     }
                     .setNegativeButton(R.string.Cancelar)
                     { dialog, wich ->
@@ -84,20 +78,20 @@ class ActivityMain : AppCompatActivity() {
                     .show()
 
             } else {
-                actualizadorDeLaApp.ConsultarActualizacionesNuevasEnElServidor(
+                actualizadorDeLaApp.buscarActualizacionesNuevas(
                     object : AppUpdaterUtils.UpdateListener {
                         override fun onSuccess(update: Update, isUpdateAvailable: Boolean) {
                             if (isUpdateAvailable) {
-                                actualizadorDeLaApp.MostrarMensajeDeActualizacionDisponible(
+                                actualizadorDeLaApp.mostrarMensajeDeActualizacionDisponible(
                                     { dialogInterface, i ->
-                                        actualizadorDeLaApp.DescargarActualizacion()
+                                        actualizadorDeLaApp.descargarActualizacion()
                                     },
                                     { dialogInterface, i ->
                                         finish()
                                     }
                                 )
                             } else {
-                                actualizadorDeLaApp.DetenerBusquedaDeActualizaciones()
+                                actualizadorDeLaApp.detenerBusquedaDeActualizaciones()
                                 val irAContenedorFinal =
                                     Intent(contexto, ActivityPrincipalNavBar::class.java)
                                 startActivity(irAContenedorFinal)
@@ -108,7 +102,7 @@ class ActivityMain : AppCompatActivity() {
                         override fun onFailed(error: AppUpdaterError) {
 
                             Alertas(contexto)
-                                .GenerarAlertaDeError()
+                                .generarAlertaDeError()
                                 .setMessage(R.string.HuboUnErrorAlConectarConElServidorDeActualizaciones)
                                 .setPositiveButton(R.string.VolverAIntentarlo)
                                 { dialog, wich ->
@@ -130,7 +124,7 @@ class ActivityMain : AppCompatActivity() {
         } else {
 
             Alertas(contexto)
-                .GenerarAlertaDeError()
+                .generarAlertaDeError()
                 .setMessage(R.string.ParaPoderUsarLaAplicacionSeRequiereUnaConexionAInternet)
                 .setPositiveButton(
                     R.string.VolverAIntentarlo
@@ -173,9 +167,9 @@ class ActivityMain : AppCompatActivity() {
     }
 
     //Fuente: https://stackoverflow.com/questions/30525784/android-keep-service-running-when-app-is-killed
-    private fun MiServicioEstaCorriendo(servicio: Class<*>) : Boolean {
+    private fun miServicioEstaCorriendo(servicio: Class<*>): Boolean {
 
-        var miServicioEstaCorriendo : Boolean = false
+        var miServicioEstaCorriendo: Boolean = false
 
         val activityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
