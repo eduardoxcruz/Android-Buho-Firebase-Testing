@@ -8,21 +8,21 @@
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/notification"
+        android:icon="@drawable/bell"
         android:title="@string/Notificaciones" />
 
     <item
         android:id="@+id/navigation_empresa"
-        android:icon="@drawable/factory"
+        android:icon="@drawable/domain"
         android:title="@string/Empresa" />
 
     <item
         android:id="@+id/navigation_desempeno"
-        android:icon="@drawable/combochart"
+        android:icon="@drawable/chart_bar"
         android:title="@string/Desempeño" />
 
     <item
         android:id="@+id/navigation_usuario"
-        android:icon="@drawable/circleduser"
+        android:icon="@drawable/account"
         android:title="@string/Usuario" />
 </menu>
