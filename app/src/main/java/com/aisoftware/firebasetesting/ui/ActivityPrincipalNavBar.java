@@ -13,9 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityPrincipalNavBar extends AppCompatActivity {
 
-    private BottomNavigationView navView;
-    private AppBarConfiguration appBarConfiguration;
-    private NavController navController;
+    private BottomNavigationView barraDeNavegacionInferior;
+    private AppBarConfiguration configuracionDeLaBarraDeLaApp;
+    private NavController controladorDeNavegacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,9 @@ public class ActivityPrincipalNavBar extends AppCompatActivity {
         this.getSupportActionBar().hide();
         setContentView(R.layout.activity_principal_nav_bar);
 
-        navView = findViewById(R.id.nav_view);
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        appBarConfiguration = new AppBarConfiguration.Builder(
+        barraDeNavegacionInferior = findViewById(R.id.barraDeNavegacionInferior);
+        controladorDeNavegacion = Navigation.findNavController(this, R.id.fragmentHostDeNavegacion);
+        configuracionDeLaBarraDeLaApp = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
                 R.id.navigation_notifications,
                 R.id.navigation_desempeno,
@@ -33,8 +33,8 @@ public class ActivityPrincipalNavBar extends AppCompatActivity {
                 R.id.navigation_usuario)
                 .build();
 
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        NavigationUI.setupActionBarWithNavController(this, controladorDeNavegacion, configuracionDeLaBarraDeLaApp);
+        NavigationUI.setupWithNavController(barraDeNavegacionInferior, controladorDeNavegacion);
     }
 
 }
